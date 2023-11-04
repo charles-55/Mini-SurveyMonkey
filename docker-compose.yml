@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  db:
+    image: mysql:latest
+    container_name: mini_surveymonkey
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+      MYSQL_ROOT_PASSWORD: myrootpassword
+    ports:
+      - 3306:3306
