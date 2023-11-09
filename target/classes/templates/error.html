@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error!</title>
+</head>
+<body>
+<div>
+    <h1>Something went wrong! </h1>
+    <p th:text="'Error Code: ' + ${errorCode}"/>
+    <p th:text="'Description: ' + ${description}"/>
+</div>
+
+<div>
+    <form action="#" th:action="'/'" method="get">
+        <p>Go Home: <input type="submit" value="Home"/></p>
+    </form>
+</div>
+
+</body>
+</html>
