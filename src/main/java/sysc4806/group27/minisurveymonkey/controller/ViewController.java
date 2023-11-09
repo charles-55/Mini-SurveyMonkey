@@ -32,14 +32,4 @@ public class ViewController {
     public String createSurvey() {
         return "createSurvey";
     }
-
-    @GetMapping
-    public String showResult() {
-        // get survey to display result
-        // iterate through each question
-        // check the type of question (instanceOf)
-        // type cast the actual type to the result
-        // add result to the model
-        return "result";
-    }
 }
