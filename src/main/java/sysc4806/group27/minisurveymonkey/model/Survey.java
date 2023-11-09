@@ -9,6 +9,7 @@ import java.util.List;
 public class Survey {
 
     @Id
+    @GeneratedValue
     private String name;
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<Question> questions;
