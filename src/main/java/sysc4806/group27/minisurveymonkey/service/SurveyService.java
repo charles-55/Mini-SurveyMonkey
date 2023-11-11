@@ -18,13 +18,16 @@ public class SurveyService {
         this.surveyRepo = surveyRepo;
     }
 
-    public Survey createNewSurvey(List<Question> questions) {
-        Survey survey = new Survey();
+    public TextQuestion addQuestion(String surveyName, TextQuestion question) {
+        Survey survey = surveyRepo.findByName(surveyName);
+        survey.addQuestion(question);
         surveyRepo.save(survey);
+        return question;
+    }
 
-        for(Question question : questions)
-            survey.addQuestion(question);
-
+    public Survey createNewSurvey(String surveyName) {
+        Survey survey = new Survey();
+        survey.setName(surveyName);
         surveyRepo.save(survey);
         return survey;
     }
