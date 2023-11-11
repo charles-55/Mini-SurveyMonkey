@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Create a Survey - MiniSurveyMonkey</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script th:inline="javascript">
+        $(document).ready(function() {
+            // Function to duplicate the last question-inputs div
+            function duplicateDiv() {
+                var originalDiv = $('.question-inputs:last');
+                var clone = originalDiv.clone();
+
+                // Clear the input values in the cloned div
+                clone.find('input, select').val('');
+
+                // Append the cloned div to the questions-container
+                $('#questions-container').append(clone);
+            }
+
+            // Event listener for the button click
+            $('#add-question-btn').on('click', function() {
+                duplicateDiv();
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -15,24 +35,29 @@
         Create a survey by adding questions.
         You can select from 3 types of questions: open-ended, range, and multiple-choice questions.
     </p>
-    <form>
+    <form th:action="@{/survey/add}" th:object="${survey}">
         <div class="form-group">
-            <label for="titleInput">Enter Survey Title:</label>
-            <input type="text" class="form-control" id="titleInput" placeholder="e.g. Survey 1...">
+            <label for="title-input">Enter Survey Title:</label>
+            <input type="text" th:field= "*{name}" class="form-control" id="title-input">
         </div>
         <br>
         <h3>Add Questions to your Survey</h3>
+        <div id="questions-container">
+            <div th:each="question, iterStat : *{questions}" class="form-group question-inputs">
+                <label for="dropdown-options">Select your question type</label>
+                <select th:field="*{questions[__${iterStat.index}__].type}" class="form-control" id="dropdown-options">
+                    <option value="open-ended">Open-Ended</option>
+                    <option value="range">Range</option>
+                    <option value="option">Multi-choice</option>
+                </select>
+                <br>
+                <label for="content-input">Enter question content:</label>
+                <input type="text" th:field="*{questions[__${iterStat.index}__].content}" class="form-control" id="content-input">
+            </div>
+        </div>
         <div class="form-group">
-            <label for="dropdownOptions">Select your question type</label>
-            <select class="form-control" id="dropdownOptions">
-                <option value="option1">Open-Ended</option>
-                <option value="option2">Range</option>
-                <option value="option3">Multi-choice</option>
-            </select>
-            <br>
-            <label for="contentInput">Enter question content:</label>
-            <input type="text" class="form-control" id="contentInput" placeholder="e.g. How old are you...">
-            <button type="submit" class="btn btn-primary mt-3">Add Question</button>
+            <button id="add-question-btn" type="button" class="btn btn-primary mt-3">Add Question (+)</button>
+            <button type="submit" class="btn btn-primary mt-3">Submit Survey</button>
         </div>
     </form>
 </div>

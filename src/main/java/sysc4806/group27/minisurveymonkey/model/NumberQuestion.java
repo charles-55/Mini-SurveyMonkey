@@ -31,14 +31,13 @@ public class NumberQuestion extends Question {
         return maxVal;
     }
 
-    HashMap<Integer, Integer> getAnswers() {
+    @Override
+    public HashMap<Integer, Integer> getAnswers() {
         return answers;
     }
 
     void addCount(int key){
         answers.replace(key, answers.get(key)+1);
     }
-
-
 
 }
