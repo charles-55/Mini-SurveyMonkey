@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Create a Survey - MiniSurveyMonkey</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Create a Survey</h2>
+    <p>
+        Create a survey by adding questions.
+        You can select from 3 types of questions: open-ended, range, and multiple-choice questions.
+    </p>
+    <form>
+        <div class="form-group">
+            <label for="titleInput">Enter Survey Title:</label>
+            <input type="text" class="form-control" id="titleInput" placeholder="e.g. Survey 1...">
+        </div>
+        <br>
+        <h3>Add Questions to your Survey</h3>
+        <div class="form-group">
+            <label for="dropdownOptions">Select your question type</label>
+            <select class="form-control" id="dropdownOptions">
+                <option value="option1">Open-Ended</option>
+                <option value="option2">Range</option>
+                <option value="option3">Multi-choice</option>
+            </select>
+            <br>
+            <label for="contentInput">Enter question content:</label>
+            <input type="text" class="form-control" id="contentInput" placeholder="e.g. How old are you...">
+            <button type="submit" class="btn btn-primary mt-3">Add Question</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
