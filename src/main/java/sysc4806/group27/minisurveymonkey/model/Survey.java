@@ -2,12 +2,14 @@ package sysc4806.group27.minisurveymonkey.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 @Entity
+@Getter
+@Setter
 public class Survey {
 
     @Id
@@ -22,10 +24,6 @@ public class Survey {
     public Survey(String name) {
         this.name = name;
         questions = new ArrayList<>();
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void addQuestion(TextQuestion question) {
