@@ -17,10 +17,10 @@ public class ViewController {
         public String login(Model model) {
             return "login";
         }
-//
-//    @GetMapping("/register")
-//    public String register(Model model){
-//        return "register";
-//    }
+
+        @GetMapping("/register")
+        public String register(Model model){
+           return "register";
+        }
     }
 }
