@@ -17,24 +17,25 @@ import java.util.List;
 public class AuthController {
 
     @Autowired
-    private  SurveyorService service ;
+    private SurveyorService service ;
 
     @GetMapping("/login")
-    public String home(Model model){
+    public String showLoginForm(Model model){
         Surveyor surveyor = new Surveyor();
         model.addAttribute("surveyor", surveyor);
         return "login";
     }
     @GetMapping("/login/user")
-    public String loggedin(@ModelAttribute("surveyor") Surveyor surveyor) {
+    public String loggedInSurveyor(@ModelAttribute("surveyor") Surveyor surveyor) {
         List<Surveyor> existingUser = service.findAllSurveyor();
 
         for (Surveyor s : existingUser) {
             if (s.getEmail().equals(surveyor.getEmail()) && s.getPassword().equals(surveyor.getPassword())) {
+                System.out.println(s.getId());
                 return "index";
             }
         }
-        return "index" ;
+        return "error" ;
     }
 
 
@@ -45,19 +46,21 @@ public class AuthController {
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
         // create model object to store form data
-       Surveyor user = new Surveyor();
+        Surveyor user = new Surveyor();
         model.addAttribute("user", user);
         return "register";
     }
     @PostMapping("/register/save")
-    public String addSurveyor( @ModelAttribute("user") Surveyor surveyor, BindingResult result
-                               ){
+    public String addSurveyor( @ModelAttribute("user") Surveyor surveyor, BindingResult result){
         List<Surveyor> existingUser = service.findAllSurveyor();
-
         for(Surveyor s: existingUser ){
-            if(s.getEmail().equals(surveyor.getEmail())){
+            if(s.getPassword().length()<7){
+                result.rejectValue("password", null,
+                        "password must be greater than 7");
+            }
+            else if(s.getPassword().equals(surveyor.getEmail())){
                 result.rejectValue("email", null,
-                        "There is already an account registered with the same email");
+                        "password must be greater than 7");
             }
 
         }
