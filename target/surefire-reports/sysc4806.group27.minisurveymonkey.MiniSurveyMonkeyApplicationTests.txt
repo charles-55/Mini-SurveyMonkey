@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: sysc4806.group27.minisurveymonkey.MiniSurveyMonkeyApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.466 s - in sysc4806.group27.minisurveymonkey.MiniSurveyMonkeyApplicationTests
