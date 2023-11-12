@@ -9,3 +9,4 @@
 
 # Added ignored files
 ../target
+../src/test/

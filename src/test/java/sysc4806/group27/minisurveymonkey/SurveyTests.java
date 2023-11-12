@@ -1,17 +1,12 @@
 package sysc4806.group27.minisurveymonkey;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.client.RestTemplate;
 import sysc4806.group27.minisurveymonkey.model.Survey;
 import sysc4806.group27.minisurveymonkey.repository.SurveyRepository;
-import sysc4806.group27.minisurveymonkey.service.SurveyService;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -26,7 +21,6 @@ public class SurveyTests {
     private MockMvc mockMvc;
     @Autowired
     private SurveyRepository surveyRepository;
-    private final RestTemplate restTemplate = new RestTemplate();
 
     @Test
     public void allSurveys() throws Exception {
@@ -37,11 +31,5 @@ public class SurveyTests {
     public void showSurveys() throws Exception {
         for(Survey survey : surveyRepository.findAll())
             this.mockMvc.perform(post("/survey/" + survey.getName())).andDo(print()).andExpect(status().isOk());
-    }
-
-    @Test
-    public void newTest() {
-        ResponseEntity<String> response = restTemplate.getForEntity( "https://www.google.com/", String.class);
-        Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 }
