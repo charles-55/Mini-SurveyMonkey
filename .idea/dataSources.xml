@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@localhost" uuid="5b4651d0-4a7a-4b31-a5f3-e52cdc0e30ca">
+    <data-source source="LOCAL" name="@mini-survey-monkey-sql-server.mysql.database.azure.com" uuid="1f2275c0-a737-472e-8b62-4d848730ccc1">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <jdbc-url>jdbc:mysql://mini-survey-monkey-sql-server.mysql.database.azure.com:3306?serverTimezone=UTC&amp;useSSL=true&amp;requireSSL=false</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="AZURE_SQL_DB_SERVER" value="/subscriptions/6e4afdbb-eab9-4618-b36e-c9dac0ddba24/resourceGroups/sysc4806/providers/Microsoft.DBforMySQL/flexibleServers/mini-survey-monkey-sql-server" />
+      </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
