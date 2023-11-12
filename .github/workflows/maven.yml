@@ -11,8 +11,6 @@ name: Java CI with Maven
 on:
   push:
     branches: [ "milestone1_charles" ]
-  pull_request:
-    branches: [ "milestone1_charles" ]
 
 jobs:
   build:
@@ -29,3 +27,12 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+    - name: Deploy to MySQL Database (Example)
+      env:
+        MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+        MYSQL_USER: ${{ secrets.MYSQL_USER }}
+        MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+        MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+      run: |
+        java -jar target/miniSurveyMonkey-0.0.1-SNAPSHOT.jar
