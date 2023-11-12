@@ -3,10 +3,12 @@ package sysc4806.group27.minisurveymonkey.model;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.Getter;
 
 import java.util.HashMap;
 @Entity
 public class NumberQuestion extends Question {
+    @Getter
     @Id
     private Long ID;
     private int minVal;
@@ -36,10 +38,6 @@ public class NumberQuestion extends Question {
 
     public void setID(Long id) {
         this.ID = id;
-    }
-
-    public Long getID() {
-        return ID;
     }
 
     int getMinVal() {
