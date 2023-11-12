@@ -1,0 +1,17 @@
+ul {
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+.contentContainer{
+    position: relative;
+    margin: 100px auto;
+    text-align: center;
+    background: grey;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 900px;
+    max-height: 100%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
