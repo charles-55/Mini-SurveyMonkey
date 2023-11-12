@@ -20,17 +20,17 @@ public class SurveyTests {
 
     @Autowired
     private MockMvc mockMvc;
-//    @Autowired
-//    private SurveyRepository surveyRepository;
+    @Autowired
+    private SurveyRepository surveyRepository;
 
     @Test
     public void allSurveys() throws Exception {
         this.mockMvc.perform(get("/survey/all")).andDo(print()).andExpect(status().isOk());
     }
 
-//    @Test
-//    public void showSurveys() throws Exception {
-//        for(Survey survey : surveyRepository.findAll())
-//            this.mockMvc.perform(post("/survey/" + survey.getName())).andDo(print()).andExpect(status().isOk());
-//    }
+    @Test
+    public void showSurveys() throws Exception {
+        for(Survey survey : surveyRepository.findAll())
+            this.mockMvc.perform(post("/survey/" + survey.getName())).andDo(print()).andExpect(status().isOk());
+    }
 }
