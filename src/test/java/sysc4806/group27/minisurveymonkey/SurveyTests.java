@@ -7,13 +7,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import sysc4806.group27.minisurveymonkey.model.Survey;
 import sysc4806.group27.minisurveymonkey.repository.SurveyRepository;
+import sysc4806.group27.minisurveymonkey.service.SurveyService;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@SpringBootTest(classes = {MiniSurveyMonkeyApplication.class})
 @AutoConfigureMockMvc
 public class SurveyTests {
 
