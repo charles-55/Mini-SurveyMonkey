@@ -2,12 +2,14 @@ package sysc4806.group27.minisurveymonkey.model;
 
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Entity
+@Getter
 @Setter
 public class NumberQuestion extends Question {
 
@@ -36,17 +38,6 @@ public class NumberQuestion extends Question {
             answers.put(x, 0);
         }
     }
-
-    public int getMinVal() {
-        return minVal;
-    }
-
-    public int getMaxVal() {
-        return maxVal;
-    }
-
-    @Override
-    public void addAnswer(String s) {}
 
     @Override
     public Map<Integer, Integer> getAnswers() {

@@ -16,8 +16,6 @@ public abstract class Question {
     @ManyToOne
     private Survey survey;
 
-    public abstract void addAnswer(String s);
-
     public abstract Object getAnswers();
 
     public abstract void addAnswer(String s);
