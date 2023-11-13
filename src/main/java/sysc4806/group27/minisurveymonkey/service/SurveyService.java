@@ -29,6 +29,7 @@ public class SurveyService {
                                 List<String> questionTypes,
                                 List<String> questionContents) {
         Survey survey = new Survey(surveyTitle);
+        surveyRepo.save(survey);
         for (int i = 0; i < questionTypes.size(); i++) {
             switch (questionTypes.get(i)) {
                 case "open-ended" -> {
@@ -36,7 +37,6 @@ public class SurveyService {
                     openEndedQuestion.setSurvey(survey);
                     openEndedQuestion.setContent(questionContents.get(i));
                     survey.addQuestion(openEndedQuestion);
-                    break;
                 }
                 case "range" -> {
                     NumberQuestion numberQuestion = new NumberQuestion();

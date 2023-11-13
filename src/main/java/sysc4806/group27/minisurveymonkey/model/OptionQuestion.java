@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 @Entity
 public class OptionQuestion extends Question {
-  
     private ArrayList<String> answers;
 
+    @Override
     public void addAnswer(String answer) {
         answers.add(answer);
     }

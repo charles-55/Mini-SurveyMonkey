@@ -7,10 +7,12 @@ import java.util.ArrayList;
 public class OpenEndedQuestion extends Question {
     private ArrayList<String> answers;
 
+    @Override
     public void addAnswer(String answer) {
         answers.add(answer);
     }
 
+    @Override
     public Object getAnswers() {
         return answers;
     }
