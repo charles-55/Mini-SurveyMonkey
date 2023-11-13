@@ -19,4 +19,6 @@ public abstract class Question {
     public abstract void addAnswer(String s);
 
     public abstract Object getAnswers();
+
+    public abstract void addAnswer(String s);
 }

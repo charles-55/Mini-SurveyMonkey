@@ -6,14 +6,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<div>
+<div class="container mt-3">
     <h1 th:text="${searchValue}"/>
+
+    <div th:each="survey : ${surveys}">
+        <a th:href="'/survey/' + ${survey.getId()}">
+            <div><p th:text="${survey.getName()}"/></div>
+        </a>
+    </div>
 </div>
 
-<div th:each="survey : ${surveys}">
-    <a th:href="'/survey/' + ${survey.getName()}">
-        <div><p th:text="${survey.getName()}"/></div>
-    </a>
-</div>
 </body>
 </html>

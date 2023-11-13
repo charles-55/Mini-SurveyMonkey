@@ -10,11 +10,7 @@ public class OptionQuestion extends Question {
 
     public OptionQuestion() {
     }
-
-    public OptionQuestion(String text){
-        //super(text);
-    }
-
+  
     @Override
     public void addAnswer(String answer) {
         answers.add(answer);
