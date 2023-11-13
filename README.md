@@ -5,6 +5,9 @@
   * [Overview](#overview)
   * [Authors](#authors)
   * [State of the Project](#state-of-the-project)
+  * [Plan for next Sprint](#plan-for-next-sprint)
+  * [Database Schema as of Milestone 1](#database-schema-as-of-milestone-1)
+  * [Model UML Diagram as of Milestone 1](#model-uml-diagram-as-of-milestone-1)
 <!-- TOC -->
 
 ## Overview
@@ -49,13 +52,15 @@ A mini-survey monkey web application that allows a surveyor to create a survey w
   - Add fields for additional inputs associated with range and multi-choice questions
   - Values should be saved appropriately in DB
 - Select survey / take survey:
-  - Surveys should display different fields (not just text areas) based on the type of question and addtional info saved from the create survey form (range, options)
+  - Surveys should display different fields (not just text areas) based on the type of question and additional info saved from the create survey form (range, options)
   - Values should be saved appropriately in DB
 - Display results of survey:
   - Surveys should display summarization of answers based on question type
     - for range, so sort of histogram interpretation
-    - for option question so sort of piechart (or percentage) interpretation
-
+    - for option question so sort of pie-chart (or percentage) interpretation
 
 ## Database Schema as of Milestone 1
 ![image](https://github.com/charles-55/Mini-SurveyMonkey/assets/77470047/8e5ff22f-e72b-4987-b40d-165c8b9a3057)
+
+## Model UML Diagram as of Milestone 1
+![image](https://github.com/charles-55/Mini-SurveyMonkey/assets/59775183/676e2ae8-8211-4063-8f1a-ee6db1da76f5)
