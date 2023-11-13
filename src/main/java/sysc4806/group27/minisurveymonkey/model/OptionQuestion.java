@@ -11,7 +11,7 @@ public class OptionQuestion extends Question {
 
 
     public OptionQuestion(String text){
-        //super(text);
+        super(text);
     }
 
     public void addOption(String optionValue){
