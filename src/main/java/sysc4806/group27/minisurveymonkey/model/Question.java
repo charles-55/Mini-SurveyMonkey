@@ -8,13 +8,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public abstract class Question {
-  
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String content;
     @ManyToOne
     private Survey survey;
+
+    public abstract void addAnswer(String s);
 
     public abstract Object getAnswers();
 }
