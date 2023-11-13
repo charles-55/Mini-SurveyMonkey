@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Create a Survey - MiniSurveyMonkey</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/js/createSurvey.js"></script>
 </head>
 <body>
+
+<div class="container mt-5" id="main-container">
+    <h1>Create a Survey</h1>
+    <form action="/" method="get">
+        <button type="submit" class="btn btn-primary mt-3">Home</button>
+    </form>
+    <br>
+    <h6>Create a survey by adding questions.</h6>
+    <h6>You can select from 3 types of questions: open-ended, range, and multiple-choice questions.</h6>
+    <br>
+    <form action="/survey/add" method="post" id="survey-form">
+        <div class="form-group">
+            <label for="survey-title">Enter Survey Title:</label>
+            <input type="text" class="form-control" id="survey-title" name="survey-title">
+        </div>
+        <br>
+        <h3>Add Questions to your Survey</h3>
+        <br>
+        <div id="questions-container" class="form-group">
+            <fieldset class="question-set">
+                <legend>Question 1</legend>
+                <label for="question-type">Select your question type</label>
+                <select class="form-control" id="question-type" name="question-type">
+                    <option value="open-ended">Open-Ended</option>
+                    <option value="range">Range</option>
+                    <option value="option">Multi-choice</option>
+                </select>
+                <label for="question-content">Enter question content:</label>
+                <input class="form-control" id="question-content" name="question-content">
+            </fieldset>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary mt-3" id="add-question-btn">Add Question (+)</button>
+            <button type="button" class="btn btn-primary mt-3" id="rem-question-btn">Remove Last Question (-)</button>
+            <button type="submit" class="btn btn-primary mt-3" id="submit-survey-btn">Submit Survey</button>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>

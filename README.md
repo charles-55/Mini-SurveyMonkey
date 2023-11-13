@@ -13,7 +13,7 @@ A mini-survey monkey web application that allows a surveyor to create a survey w
 ## Authors
 1. Osamudiamen Nwoko
 2. Osas Iyamu
-3. Ese Iyamu 
+3. Ese Iyamu
 4. Leslie Ejeh
 5. Toyin Adams
 
@@ -29,7 +29,7 @@ A mini-survey monkey web application that allows a surveyor to create a survey w
   - Users can register on registration page and are saved to the Database
   - Only registered users can log in, if not registered, users trying to log in will be sent to error page
   - Login view is not yet set up, (all users have the same view, currently)
-  - Logout functionality is not yet set up 
+  - Logout functionality is not yet set up
 - Create new survey feature:
   - Users can create a survey giving a title, and adding questions based on selected question type and content
   - Users can select from open-ended, range, and multi-choice questions to add, but treats all question types as open-ended for now
@@ -37,9 +37,9 @@ A mini-survey monkey web application that allows a surveyor to create a survey w
 - Select survey / take survey
   - All surveys in the DB are retrieved and can be displayed
   - Surveys can be taken, all questions provide text areas for now
-  - Answers to survey question are saved to DB upon submission  
+  - Answers to survey question are saved to DB upon submission
 - Display results of survey
-  - Displays answers submitted to each survey question of a selected survey 
+  - Displays answers submitted to each survey question of a selected survey
 
 ## Plan for next Sprint
 - Login/registration feature:
@@ -54,7 +54,7 @@ A mini-survey monkey web application that allows a surveyor to create a survey w
 - Display results of survey:
   - Surveys should display summarization of answers based on question type
     - for range, so sort of histogram interpretation
-    - for option question so sort of piechart (or percentage) interpretation   
+    - for option question so sort of piechart (or percentage) interpretation
 
 
 ## Database Schema as of Milestone 1

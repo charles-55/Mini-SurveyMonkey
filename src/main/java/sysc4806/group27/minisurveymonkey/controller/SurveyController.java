@@ -22,8 +22,11 @@ public class SurveyController {
     }
 
     @PostMapping("/survey/add")
-    public String addSurvey(@RequestBody String surveyName) {
-        surveyService.createNewSurvey(surveyName);
+    public String addSurvey(
+            @RequestParam("survey-title") String surveyTitle,
+            @RequestParam("question-type") List<String> questionTypes,
+            @RequestParam("question-content") List<String> questionContents) {
+        surveyService.createNewSurvey(surveyTitle, questionTypes, questionContents);
         return "index";
     }
 
@@ -41,16 +44,16 @@ public class SurveyController {
         return "surveySearch";
     }
 
-    @GetMapping("/survey/{surveyName}")
-    public String showSurvey(@PathVariable("surveyName") String surveyName, Model model) {
-        model.addAttribute("survey", surveyService.getSurvey(surveyName));
+    @GetMapping("/survey/{surveyId}")
+    public String showSurvey(@PathVariable("surveyId") int surveyId, Model model) {
+        model.addAttribute("survey", surveyService.getSurvey(surveyId));
         return "survey";
     }
 
-    @PostMapping("/survey/{surveyName}/submit")
-    public String submitSurvey(@PathVariable("surveyName") String surveyName, @RequestParam("answers") List<String> answers, Model model) {
-        surveyService.addSurveyAnswers(surveyName, answers);
-        model.addAttribute("survey", surveyService.getSurvey(surveyName));
+    @PostMapping("/survey/{surveyId}/submit")
+    public String submitSurvey(@PathVariable("surveyId") int surveyId, @RequestParam("answers") List<String> answers, Model model) {
+        surveyService.addSurveyAnswers(surveyId, answers);
+        model.addAttribute("survey", surveyService.getSurvey(surveyId));
         return "submitted";
     }
 }

@@ -8,10 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-
 @Service
 public class SurveyorService {
-    private SurveyorRepository surveyorRepository;
+    private final SurveyorRepository surveyorRepository;
 
     public SurveyorService(SurveyorRepository surveyorRepository) {
         this.surveyorRepository = surveyorRepository;
@@ -27,17 +26,13 @@ public class SurveyorService {
 
     public List<Surveyor> findAllSurveyor(){
         Iterable<Surveyor> surveyorsIterable = surveyorRepository.findAll();
-        List<Surveyor> surveyorsList = StreamSupport.stream(surveyorsIterable.spliterator(), false)
+        return StreamSupport.stream(surveyorsIterable.spliterator(), false)
                 .collect(Collectors.toList());
-        return surveyorsList;
     }
 
-   /** public Surveyor findUserByEmail(String email) {
-        return surveyorRepository.findByEmail(email);
-    }
-    **/
-
+    /** public Surveyor findUserByEmail(String email) {
+     return surveyorRepository.findByEmail(email);
+     }
+     **/
 
 }
-
-

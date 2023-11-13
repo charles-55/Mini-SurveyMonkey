@@ -26,18 +26,18 @@
     </style>
 </head>
 <body>
-    <p class="title" th:text="'Results for Survey - ' + ${survey.name}" />
-    <hr>
+<p class="title" th:text="'Results for Survey - ' + ${survey.name}" />
+<hr>
 
-    <div class="allQuestions" th:each="question, iterator : ${survey.questions}">
-        <p class="question" th:text="'Question ' + ${iterator.count}"/>
-        <p class="question" th:text="${question.content} "/>
+<div class="allQuestions" th:each="question, iterator : ${survey.questions}">
+    <p class="question" th:text="'Question ' + ${iterator.count}"/>
+    <p class="question" th:text="${question.content} "/>
 
-        <div th:each="answer: ${question.answers}">
-            <p th:text="${answer}"/>
-        </div>
-        <br>
+    <div th:each="answer: ${question.answers}">
+        <p th:text="${answer}"/>
     </div>
+    <br>
+</div>
 
 </body>
 </html>
