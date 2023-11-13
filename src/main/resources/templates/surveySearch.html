@@ -10,8 +10,8 @@
     <h1 th:text="${searchValue}"/>
 
     <div th:each="survey : ${surveys}">
-        <a th:href="'/survey/' + ${survey.getId()}">
-            <div><p th:text="${survey.getName()}"/></div>
+        <a th:href="'/survey/' + ${survey.id}">
+            <div><p th:text="${survey.name}"/></div>
         </a>
     </div>
 </div>

@@ -49,7 +49,7 @@ public class NumberQuestion extends Question {
 
     }
 
-    void addCount(int key){
+    public void addCount(int key){
         answers.replace(key, answers.get(key)+1);
     }
 }
