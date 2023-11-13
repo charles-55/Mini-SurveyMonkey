@@ -1,9 +1,8 @@
 package sysc4806.group27.minisurveymonkey.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sysc4806.group27.minisurveymonkey.model.Question;
-import sysc4806.group27.minisurveymonkey.model.Survey;
-import sysc4806.group27.minisurveymonkey.model.OpenEndedQuestion;
+import sysc4806.group27.minisurveymonkey.model.*;
 import sysc4806.group27.minisurveymonkey.repository.SurveyRepository;
 
 import java.util.ArrayList;
@@ -11,9 +10,9 @@ import java.util.List;
 
 @Service
 public class SurveyService {
-
     private final SurveyRepository surveyRepo;
 
+    @Autowired
     public SurveyService(SurveyRepository surveyRepo) {
         this.surveyRepo = surveyRepo;
     }
@@ -25,9 +24,37 @@ public class SurveyService {
         return question;
     }
 
-    public Survey createNewSurvey(Survey survey) {
+    public void createNewSurvey(String surveyTitle,
+                                List<String> questionTypes,
+                                List<String> questionContents) {
+        Survey survey = new Survey(surveyTitle);
+        for (int i = 0; i < questionTypes.size(); i++) {
+            switch (questionTypes.get(i)) {
+                case "open-ended" -> {
+                    OpenEndedQuestion openEndedQuestion = new OpenEndedQuestion();
+                    openEndedQuestion.setSurvey(survey);
+                    openEndedQuestion.setContent(questionContents.get(i));
+                    survey.addQuestion(openEndedQuestion);
+                    break;
+                }
+                case "range" -> {
+                    NumberQuestion numberQuestion = new NumberQuestion();
+                    numberQuestion.setSurvey(survey);
+                    numberQuestion.setContent(questionContents.get(i));
+                    survey.addQuestion(numberQuestion);
+                }
+                case "option" -> {
+                    OptionQuestion optionQuestion = new OptionQuestion();
+                    optionQuestion.setSurvey(survey);
+                    optionQuestion.setContent(questionContents.get(i));
+                    survey.addQuestion(optionQuestion);
+                }
+                default -> {
+                    // Logic should not get hear, users can only choose from above 3 options
+                }
+            }
+        }
         surveyRepo.save(survey);
-        return survey;
     }
 
     public List<Survey> getAllSurveys() {
@@ -38,7 +65,7 @@ public class SurveyService {
             Survey newSurvey = new Survey();
             newSurvey.setName(survey.getName());
             for(Question question : survey.getQuestions())
-                newSurvey.addQuestion((OpenEndedQuestion) question);
+                newSurvey.addQuestion((OpenEndedQuestion)question);
             surveys.add(survey);
         }
         return surveys;
@@ -49,7 +76,7 @@ public class SurveyService {
         Survey survey1 = surveyRepo.findByName(surveyName);
         survey.setName(survey1.getName());
         for(Question question : survey1.getQuestions())
-            survey.addQuestion((OpenEndedQuestion) question);
+            survey.addQuestion((OpenEndedQuestion)question);
         return survey;
     }
 
@@ -62,7 +89,7 @@ public class SurveyService {
                 Survey newSurvey = new Survey();
                 newSurvey.setName(survey.getName());
                 for(Question question : survey.getQuestions())
-                    newSurvey.addQuestion((OpenEndedQuestion) question);
+                    newSurvey.addQuestion((OpenEndedQuestion)question);
 
                 surveys.add(newSurvey);
             }

@@ -3,18 +3,19 @@ package sysc4806.group27.minisurveymonkey.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.aspectj.apache.bcel.classfile.Module;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-//@Getter
-//@Setter
+@Getter
+@Setter
 public class Survey {
 
     @Id
     private String name;
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "survey", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<Question> questions;
 
     public Survey() {
@@ -26,27 +27,19 @@ public class Survey {
         questions = new ArrayList<>();
     }
 
-    public void addQuestion(OpenEndedQuestion question) {
-        questions.add(question);
+    public void addQuestion(Question question) {
+        // may want to move this into controller or service
+        question.setSurvey(this);
+        if (question instanceof OpenEndedQuestion) {
+            questions.add((OpenEndedQuestion)question);
+        } else if (question instanceof NumberQuestion) {
+            questions.add((NumberQuestion)question);
+        } else {
+            questions.add((OptionQuestion)question);
+        }
     }
 
-    public void removeQuestion(OpenEndedQuestion question) {
+    public void removeQuestion(Question question) {
         questions.remove(question);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
     }
 }

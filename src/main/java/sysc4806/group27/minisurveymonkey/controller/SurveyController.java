@@ -3,14 +3,12 @@ package sysc4806.group27.minisurveymonkey.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import sysc4806.group27.minisurveymonkey.model.Survey;
 import sysc4806.group27.minisurveymonkey.service.SurveyService;
 
 import java.util.List;
 
 @Controller
 public class SurveyController {
-
     private final SurveyService surveyService;
 
     public SurveyController(SurveyService surveyService) {
@@ -18,18 +16,16 @@ public class SurveyController {
     }
 
     @GetMapping("/survey/add")
-    public String createSurvey(Model model) {
-        model.addAttribute("survey", new Survey());
+    public String createSurvey() {
         return "createSurvey";
     }
 
     @PostMapping("/survey/add")
-    public String addSurvey(@ModelAttribute("survey") Survey survey) {
-//        List<Question> questions = survey.getQuestions();
-//        for (Question question: questions) {
-//            if (question.getType() == "op")
-//        }
-        surveyService.createNewSurvey(survey);
+    public String addSurvey(
+            @RequestParam("survey-title") String surveyTitle,
+            @RequestParam("question-type") List<String> questionTypes,
+            @RequestParam("question-content") List<String> questionContents) {
+        surveyService.createNewSurvey(surveyTitle, questionTypes, questionContents);
         return "index";
     }
 

@@ -13,7 +13,6 @@ public abstract class Question {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private String type;
     private String content;
     @ManyToOne
     private Survey survey;
