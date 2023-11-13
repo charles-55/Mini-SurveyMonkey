@@ -28,11 +28,11 @@ public class NumberQuestion extends Question {
         }
     }
 
-    int getMinVal() {
+    public int getMinVal() {
         return minVal;
     }
 
-    int getMaxVal() {
+    public int getMaxVal() {
         return maxVal;
     }
 
