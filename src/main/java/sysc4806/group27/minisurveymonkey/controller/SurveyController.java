@@ -22,8 +22,11 @@ public class SurveyController {
     }
 
     @PostMapping("/survey/add")
-    public String addSurvey(@RequestBody String surveyName) {
-        surveyService.createNewSurvey(surveyName);
+    public String addSurvey(
+            @RequestParam("survey-title") String surveyTitle,
+            @RequestParam("question-type") List<String> questionTypes,
+            @RequestParam("question-content") List<String> questionContents) {
+        surveyService.createNewSurvey(surveyTitle, questionTypes, questionContents);
         return "index";
     }
 

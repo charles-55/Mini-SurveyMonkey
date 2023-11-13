@@ -14,8 +14,8 @@ public class Survey {
 
     @Id
     private String name;
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    private List<TextQuestion> questions;
+    @OneToMany(mappedBy = "survey", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private List<Question> questions;
 
     public Survey() {
         questions = new ArrayList<>();
@@ -26,11 +26,19 @@ public class Survey {
         questions = new ArrayList<>();
     }
 
-    public void addQuestion(TextQuestion question) {
-        questions.add(question);
+    public void addQuestion(Question question) {
+        // may want to move this into controller or service
+        question.setSurvey(this);
+        if (question instanceof OpenEndedQuestion) {
+            questions.add((OpenEndedQuestion) question);
+        } else if (question instanceof NumberQuestion) {
+            questions.add((NumberQuestion) question);
+        } else {
+            questions.add((OptionQuestion) question);
+        }
     }
 
-    public void removeQuestion(TextQuestion question) {
+    public void removeQuestion(Question question) {
         questions.remove(question);
     }
 }

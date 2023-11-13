@@ -1,9 +1,8 @@
 package sysc4806.group27.minisurveymonkey.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sysc4806.group27.minisurveymonkey.model.Question;
-import sysc4806.group27.minisurveymonkey.model.Survey;
-import sysc4806.group27.minisurveymonkey.model.TextQuestion;
+import sysc4806.group27.minisurveymonkey.model.*;
 import sysc4806.group27.minisurveymonkey.repository.SurveyRepository;
 
 import java.util.ArrayList;
@@ -14,22 +13,49 @@ public class SurveyService {
 
     private final SurveyRepository surveyRepo;
 
+    @Autowired
     public SurveyService(SurveyRepository surveyRepo) {
         this.surveyRepo = surveyRepo;
     }
 
-    public TextQuestion addQuestion(String surveyName, TextQuestion question) {
+    public OpenEndedQuestion addQuestion(String surveyName, OpenEndedQuestion question) {
         Survey survey = surveyRepo.findByName(surveyName);
         survey.addQuestion(question);
         surveyRepo.save(survey);
         return question;
     }
 
-    public Survey createNewSurvey(String surveyName) {
-        Survey survey = new Survey();
-        survey.setName(surveyName);
+    public void createNewSurvey(String surveyTitle,
+                                List<String> questionTypes,
+                                List<String> questionContents) {
+        Survey survey = new Survey(surveyTitle);
+        for (int i = 0; i < questionTypes.size(); i++) {
+            switch (questionTypes.get(i)) {
+                case "open-ended" -> {
+                    OpenEndedQuestion openEndedQuestion = new OpenEndedQuestion();
+                    openEndedQuestion.setSurvey(survey);
+                    openEndedQuestion.setContent(questionContents.get(i));
+                    survey.addQuestion(openEndedQuestion);
+                    break;
+                }
+                case "range" -> {
+                    NumberQuestion numberQuestion = new NumberQuestion();
+                    numberQuestion.setSurvey(survey);
+                    numberQuestion.setContent(questionContents.get(i));
+                    survey.addQuestion(numberQuestion);
+                }
+                case "option" -> {
+                    OptionQuestion optionQuestion = new OptionQuestion();
+                    optionQuestion.setSurvey(survey);
+                    optionQuestion.setContent(questionContents.get(i));
+                    survey.addQuestion(optionQuestion);
+                }
+                default -> {
+                    // Logic should not get hear, users can only choose from above 3 options
+                }
+            }
+        }
         surveyRepo.save(survey);
-        return survey;
     }
 
     public List<Survey> getAllSurveys() {
@@ -39,9 +65,8 @@ public class SurveyService {
         for(Survey survey : surveyList) {
             Survey newSurvey = new Survey();
             newSurvey.setName(survey.getName());
-            for(TextQuestion question : survey.getQuestions())
-                newSurvey.addQuestion(question);
-
+            for(Question question : survey.getQuestions())
+                newSurvey.addQuestion((OpenEndedQuestion) question);
             surveys.add(survey);
         }
 
@@ -53,9 +78,8 @@ public class SurveyService {
         Survey survey1 = surveyRepo.findByName(surveyName);
 
         survey.setName(survey1.getName());
-        for(TextQuestion question : survey1.getQuestions())
-            survey.addQuestion(question);
-
+        for(Question question : survey1.getQuestions())
+            survey.addQuestion((OpenEndedQuestion) question);
         return survey;
     }
 
@@ -67,8 +91,8 @@ public class SurveyService {
             if(survey.getName().contains(name)) {
                 Survey newSurvey = new Survey();
                 newSurvey.setName(survey.getName());
-                for(TextQuestion question : survey.getQuestions())
-                    newSurvey.addQuestion(question);
+                for(Question question : survey.getQuestions())
+                    newSurvey.addQuestion((OpenEndedQuestion)question);
 
                 surveys.add(newSurvey);
             }
