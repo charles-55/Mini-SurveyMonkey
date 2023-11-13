@@ -15,6 +15,14 @@ $(document).ready(function() {
         $('#questions-container').append(clonedFields);
     });
 
+    $('#rem-question-btn').on('click', function() {
+        let container = $('#questions-container');
+        if (container.children('fieldset').length > 1) {
+            container.children('br:last').remove();
+            container.children('.question-set:last').remove();
+        }
+    });
+
     $("#submit-survey-btn").on("click", function() {
         $("#survey-form").submit();
     });
