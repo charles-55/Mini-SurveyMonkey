@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class SurveyService {
+
     private final SurveyRepository surveyRepo;
 
     @Autowired
@@ -65,18 +66,20 @@ public class SurveyService {
             Survey newSurvey = new Survey();
             newSurvey.setName(survey.getName());
             for(Question question : survey.getQuestions())
-                newSurvey.addQuestion((OpenEndedQuestion)question);
+                newSurvey.addQuestion((OpenEndedQuestion) question);
             surveys.add(survey);
         }
+
         return surveys;
     }
 
     public Survey getSurvey(String surveyName) {
         Survey survey = new Survey();
         Survey survey1 = surveyRepo.findByName(surveyName);
+
         survey.setName(survey1.getName());
         for(Question question : survey1.getQuestions())
-            survey.addQuestion((OpenEndedQuestion)question);
+            survey.addQuestion((OpenEndedQuestion) question);
         return survey;
     }
 

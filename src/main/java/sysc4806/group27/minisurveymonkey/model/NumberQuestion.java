@@ -3,13 +3,18 @@ package sysc4806.group27.minisurveymonkey.model;
 import java.util.HashMap;
 
 public class NumberQuestion extends Question {
+
     private int minVal;
     private int maxVal;
 
     //Answers with first integer as the range value and the second integer as the count
     private HashMap<Integer, Integer> answers;
 
-    NumberQuestion(int minVal, int maxVal){
+    public NumberQuestion() {
+        this(0, 0);
+    }
+
+    public NumberQuestion(int minVal, int maxVal){
         this.minVal = minVal;
         this.maxVal = maxVal;
 
@@ -23,11 +28,11 @@ public class NumberQuestion extends Question {
         }
     }
 
-    int getMinVal() {
+    public int getMinVal() {
         return minVal;
     }
 
-    int getMaxVal() {
+    public int getMaxVal() {
         return maxVal;
     }
 
