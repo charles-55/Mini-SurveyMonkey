@@ -11,12 +11,13 @@ public class OpenEndedQuestion extends Question {
     public OpenEndedQuestion() {
         answers = new ArrayList<>();
     }
-
+  
     @Override
     public void addAnswer(String answer) {
         answers.add(answer);
     }
 
+    @Override
     public Object getAnswers() {
         return answers;
     }

@@ -1,17 +1,26 @@
 package sysc4806.group27.minisurveymonkey.model;
 
-import java.util.HashMap;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import lombok.Setter;
 
+import java.util.HashMap;
+import java.util.Map;
+
+@Entity
+@Setter
 public class NumberQuestion extends Question {
 
     private int minVal;
     private int maxVal;
 
     //Answers with first integer as the range value and the second integer as the count
-    private HashMap<Integer, Integer> answers;
+    @ElementCollection
+    private Map<Integer, Integer> answers;
 
     public NumberQuestion() {
         this(0, 0);
+        answers = new HashMap<>();
     }
 
     public NumberQuestion(int minVal, int maxVal){
@@ -37,7 +46,10 @@ public class NumberQuestion extends Question {
     }
 
     @Override
-    public HashMap<Integer, Integer> getAnswers() {
+    public void addAnswer(String s) {}
+
+    @Override
+    public Map<Integer, Integer> getAnswers() {
         return answers;
     }
 
@@ -49,5 +61,4 @@ public class NumberQuestion extends Question {
     void addCount(int key){
         answers.replace(key, answers.get(key)+1);
     }
-
 }

@@ -11,11 +11,12 @@ import java.util.List;
 @Getter
 @Setter
 public class Survey {
-
+  
     @Id
     @GeneratedValue
     private int id;
     private String name;
+
     @OneToMany(mappedBy = "survey", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<Question> questions;
 

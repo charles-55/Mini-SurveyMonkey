@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${survey.getName()}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div>
+    <h1 th:text="${survey.getName()}"/>
+</div>
+
+<div>
+    <form action="#" th:action="'/survey/' + ${survey.getName()} + '/submit'" th:object="${survey}" method="post">
+
+        <div th:each="question, questionIndex : *{questions}">
+            <fieldset>
+                <legend th:text="${question.content}"></legend>
+
+                <label>
+                    <textarea th:name="${'answer_' + questionIndex.index}"
+                              th:placeholder="'Your answer for ' + ${question.content}"></textarea>
+                </label>
+            </fieldset>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

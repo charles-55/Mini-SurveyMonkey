@@ -67,6 +67,7 @@ public class SurveyService {
             newSurvey.setName(survey.getName());
             for(Question question : survey.getQuestions())
                 newSurvey.addQuestion(question);
+          
             surveys.add(survey);
         }
 

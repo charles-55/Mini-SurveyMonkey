@@ -1,0 +1,41 @@
+ul {
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+body{
+    background-image: url("images/IMG_4050.JPG");
+
+}
+.contentContainer{
+    position: relative;
+    margin: 100px auto;
+    text-align: center;
+    background: grey;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    width: 50%;
+    //height: 500px;
+}
+
+.button-container {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns with equal width */
+    gap: 20px; /* Adjust the gap between buttons */
+}
+
+button {
+    background-color: lightgray;
+    color: black;
+    padding: 20px; /* Adjust padding for better appearance */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}

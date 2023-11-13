@@ -15,8 +15,8 @@ public class ViewController {
 
     private Surveyor loggedInSurveyor;
 
-    @GetMapping
-    public String showHomePage() {
+    @GetMapping("/")
+    public String index(Model model) {
         return "index";
     }
 
