@@ -4,6 +4,7 @@
 * [Mini-Survey Monkey](#mini-survey-monkey)
   * [Overview](#overview)
   * [Authors](#authors)
+  * [State of the Project](#state-of-the-project)
 <!-- TOC -->
 
 ## Overview
@@ -15,3 +16,11 @@ A mini-survey monkey web application that allows a surveyor to create a survey w
 3. Ese Iyamu 
 4. Leslie Ejeh
 5. Toyin Adams
+
+## State of the Project
+
+## Plan for next Sprint
+
+
+## Database Schema as of Milestone 1
+![image](https://github.com/charles-55/Mini-SurveyMonkey/assets/77470047/8e5ff22f-e72b-4987-b40d-165c8b9a3057)
