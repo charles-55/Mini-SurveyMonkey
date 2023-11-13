@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Submitted</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
-<div>
+<div class="container mt-5">
     <h1>Survey Submitted</h1>
     <p>Thank you for taking this survey, your submission was successfully received.</p>
-    <form action="#" th:action="'/'" method="get">
-        <p>Go Home: <input type="submit" value="Home"/></p>
-    </form>
+
+    <a href="/">
+        <button type="submit" class="btn btn-primary mt-3">Home</button>
+    </a>
 </div>
 
 </body>

@@ -17,4 +17,6 @@ public abstract class Question {
     private Survey survey;
 
     public abstract Object getAnswers();
+
+    public abstract void addAnswer(String s);
 }

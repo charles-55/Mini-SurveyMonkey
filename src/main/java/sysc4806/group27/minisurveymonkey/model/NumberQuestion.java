@@ -41,6 +41,11 @@ public class NumberQuestion extends Question {
         return answers;
     }
 
+    @Override
+    public void addAnswer(String s) {
+
+    }
+
     void addCount(int key){
         answers.replace(key, answers.get(key)+1);
     }

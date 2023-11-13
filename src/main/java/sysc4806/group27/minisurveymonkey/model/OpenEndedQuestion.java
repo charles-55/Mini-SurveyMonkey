@@ -5,8 +5,14 @@ import java.util.ArrayList;
 
 @Entity
 public class OpenEndedQuestion extends Question {
+
     private ArrayList<String> answers;
 
+    public OpenEndedQuestion() {
+        answers = new ArrayList<>();
+    }
+
+    @Override
     public void addAnswer(String answer) {
         answers.add(answer);
     }

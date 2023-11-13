@@ -29,6 +29,7 @@ public class SurveyService {
                                 List<String> questionTypes,
                                 List<String> questionContents) {
         Survey survey = new Survey(surveyTitle);
+        surveyRepo.save(survey);
         for (int i = 0; i < questionTypes.size(); i++) {
             switch (questionTypes.get(i)) {
                 case "open-ended" -> {
@@ -36,7 +37,6 @@ public class SurveyService {
                     openEndedQuestion.setSurvey(survey);
                     openEndedQuestion.setContent(questionContents.get(i));
                     survey.addQuestion(openEndedQuestion);
-                    break;
                 }
                 case "range" -> {
                     NumberQuestion numberQuestion = new NumberQuestion();
@@ -51,7 +51,7 @@ public class SurveyService {
                     survey.addQuestion(optionQuestion);
                 }
                 default -> {
-                    // Logic should not get hear, users can only choose from above 3 options
+                    // Logic should not get here, users can only choose from above 3 options
                 }
             }
         }
@@ -66,20 +66,21 @@ public class SurveyService {
             Survey newSurvey = new Survey();
             newSurvey.setName(survey.getName());
             for(Question question : survey.getQuestions())
-                newSurvey.addQuestion((OpenEndedQuestion) question);
+                newSurvey.addQuestion(question);
             surveys.add(survey);
         }
 
         return surveys;
     }
 
-    public Survey getSurvey(String surveyName) {
+    public Survey getSurvey(int id) {
         Survey survey = new Survey();
-        Survey survey1 = surveyRepo.findByName(surveyName);
+        Survey survey1 = surveyRepo.findById(id);
 
+        survey.setId(id);
         survey.setName(survey1.getName());
         for(Question question : survey1.getQuestions())
-            survey.addQuestion((OpenEndedQuestion) question);
+            survey.addQuestion(question);
         return survey;
     }
 
@@ -92,7 +93,7 @@ public class SurveyService {
                 Survey newSurvey = new Survey();
                 newSurvey.setName(survey.getName());
                 for(Question question : survey.getQuestions())
-                    newSurvey.addQuestion((OpenEndedQuestion)question);
+                    newSurvey.addQuestion(question);
 
                 surveys.add(newSurvey);
             }
@@ -101,11 +102,12 @@ public class SurveyService {
         return surveys;
     }
 
-    public void addSurveyAnswers(String surveyName, List<String> answers) {
-        Survey survey = surveyRepo.findByName(surveyName);
+    public void addSurveyAnswers(int id, List<String> answers) {
+        Survey survey = surveyRepo.findById(id);
 
-        for(int i = 0; i < survey.getQuestions().size(); i++) {
+        for(int i = 0; i < survey.getQuestions().size(); i++)
             survey.getQuestions().get(i).addAnswer(answers.get(i));
-        }
+
+        surveyRepo.save(survey);
     }
 }

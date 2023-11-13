@@ -11,7 +11,7 @@
 </div>
 
 <div th:each="survey : ${surveys}">
-    <a th:href="'/survey/' + ${survey.getName()}">
+    <a th:href="'/survey/' + ${survey.getId()}">
         <div><p th:text="${survey.getName()}"/></div>
     </a>
 </div>

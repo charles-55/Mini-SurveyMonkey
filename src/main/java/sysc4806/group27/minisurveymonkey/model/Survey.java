@@ -13,6 +13,8 @@ import java.util.List;
 public class Survey {
 
     @Id
+    @GeneratedValue
+    private int id;
     private String name;
     @OneToMany(mappedBy = "survey", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<Question> questions;
