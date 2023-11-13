@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Mini Survey Monkey</title>
+    <link rel = "stylesheet" th:href = "@{/styles/css/index.css}"/>
+    <link rel="icon" th:href="@{/styles/css/images/logo1.png}" type="image/png">
 </head>
 <body>
-<h1>Welcome to Mini Survey Monkey</h1>
-<p>Start creating and taking surveys!</p>
+
+<div class = "background-image"> </div>
+<div class = "contentContainer">
+    <h1>Welcome to Mini Survey Monkey</h1>
+    <h2>Explore and create surveys:</h2>
+
+    <div class="button-container">
+        <button onclick="window.location.href='/login'">Login</button>
+        <button onclick="window.location.href='/register'">Register</button>
+        <button onclick="window.location.href='/survey/add'">Create Survey</button>
+        <button onclick="window.location.href=''">Find Survey</button>
+    </div>
+</div>
 </body>
 </html>
