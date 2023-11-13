@@ -65,8 +65,9 @@ public class SurveyService {
         for(Survey survey : surveyList) {
             Survey newSurvey = new Survey();
             newSurvey.setName(survey.getName());
-            for(Question question : survey.getQuestions())
-                newSurvey.addQuestion((OpenEndedQuestion) question);
+            for(Question question : survey.getQuestions()) {
+                newSurvey.addQuestion(question);
+            }
             surveys.add(survey);
         }
 
@@ -79,7 +80,7 @@ public class SurveyService {
 
         survey.setName(survey1.getName());
         for(Question question : survey1.getQuestions())
-            survey.addQuestion((OpenEndedQuestion) question);
+            survey.addQuestion(question);
         return survey;
     }
 
@@ -92,7 +93,7 @@ public class SurveyService {
                 Survey newSurvey = new Survey();
                 newSurvey.setName(survey.getName());
                 for(Question question : survey.getQuestions())
-                    newSurvey.addQuestion((OpenEndedQuestion)question);
+                    newSurvey.addQuestion(question);
 
                 surveys.add(newSurvey);
             }

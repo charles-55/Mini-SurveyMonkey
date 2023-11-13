@@ -5,6 +5,22 @@
     <title>Result</title>
 </head>
 <body>
+    <p th:text="'Survey Results - ID: ' + ${ID} + '!'" />
+
+    <br>
+    <hr>
+
+    <tr th:each="question, iterator: ${survey}">
+        <td th:text="'Question '${iterator_next} + ': '"/>
+        <td th:text="${question.content} "/>
+        <br>
+
+        <tr th:each="answer: ${question.answers}">
+            <td th:text="${answer} + ' | '"/>
+            <br>
+        </tr>
+        <br>
+    </tr>
 
 </body>
 </html>
