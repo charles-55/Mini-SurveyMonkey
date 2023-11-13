@@ -4,6 +4,10 @@ ul {
 a{
     text-decoration: none;
 }
+body{
+    background-image: url("images/IMG_4050.JPG");
+
+}
 .contentContainer{
     position: relative;
     margin: 100px auto;
@@ -11,7 +15,7 @@ a{
     background: grey;
     padding: 20px;
     border-radius: 10px;
-    max-width: 900px;
-    max-height: 100%;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    width: 50%;
+    //height: 500px;
 }
