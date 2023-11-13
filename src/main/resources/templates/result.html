@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <style>
+        body{
+            font-family: "Arial",sans-serif;
+            align-content: center;
+        }
+        .title{
+            display: flex;
+            font-size: larger;
+            font-weight: bolder;
+            align-content: center;
+            justify-content: center;
+        }
+        .allQuestions{
+            border-color: black;
+            border-radius: 50px;
+        }
+        .question{
+            font-size: medium;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<p class="title" th:text="'Results for Survey - ' + ${survey.name}" />
+<hr>
+
+<div class="allQuestions" th:each="question, iterator : ${survey.questions}">
+    <p class="question" th:text="'Question ' + ${iterator.count}"/>
+    <p class="question" th:text="${question.content} "/>
+
+    <div th:each="answer: ${question.answers}">
+        <p th:text="${answer}"/>
+    </div>
+    <br>
+</div>
+
+</body>
+</html>
