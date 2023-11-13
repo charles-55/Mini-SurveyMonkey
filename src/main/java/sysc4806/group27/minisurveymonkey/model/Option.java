@@ -2,8 +2,11 @@ package sysc4806.group27.minisurveymonkey.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Option {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +25,5 @@ public class Option {
 
     public Option() {
 
-    }
-
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public void setQuestion(OptionQuestion optionQuestion) {
-        this.question = optionQuestion;
     }
 }

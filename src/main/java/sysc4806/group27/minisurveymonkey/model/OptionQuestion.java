@@ -1,24 +1,32 @@
 package sysc4806.group27.minisurveymonkey.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 
 @Entity
+@Getter
+@Setter
 public class OptionQuestion extends Question {
+
 //    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    private ArrayList<String> options;
     private ArrayList<String> answers;
 
     public OptionQuestion() {
+        options = new ArrayList<>();
+        answers = new ArrayList<>();
     }
-  
+
     @Override
     public void addAnswer(String answer) {
         answers.add(answer);
     }
 
-    @Override
-    public Object getAnswers() {
-        return null;
+    public void addOption(String optionValue){
+        options.add(optionValue);
     }
 
 //    public void addOption(String optionValue){
