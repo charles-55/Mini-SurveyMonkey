@@ -2,10 +2,16 @@ server:
     port: 8080
 
 spring:
+#   This is the datasource on docker
     datasource:
-        url: jdbc:mysql://mini-survey-monkey-sql-server.mysql.database.azure.com:3306/mydb
-        username: myadmin
-        password: sysc4806!
+        url: jdbc:mysql://localhost:3306/mydb
+        username: myuser
+        password: mypassword
+#   This is the database source on azure, currently commented out for offline testing purposes, also to save azure credits.
+#    datasource:
+#        url: jdbc:mysql://mini-survey-monkey-sql-server.mysql.database.azure.com:3306/mydb
+#        username: myadmin
+#        password: sysc4806!
     jpa:
         hibernate:
             ddl-auto: create-drop
