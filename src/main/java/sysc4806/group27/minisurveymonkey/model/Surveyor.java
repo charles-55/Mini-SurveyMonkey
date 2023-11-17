@@ -36,7 +36,7 @@ public class Surveyor {
      inverseJoinColumns={@JoinColumn(name="Survey_ID", referencedColumnName="ID")})
      private List<Survey> Surveys = new ArrayList<>();**/
 
-    @OneToMany
+    @OneToMany(mappedBy = "surveyors", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<Survey> Surveys;
 
     public void addSurveys(Survey survey){
