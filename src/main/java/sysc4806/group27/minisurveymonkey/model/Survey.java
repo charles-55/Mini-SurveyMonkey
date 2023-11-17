@@ -16,6 +16,8 @@ public class Survey {
     @GeneratedValue
     private int id;
     private String name;
+    @ManyToOne
+    private Surveyor surveyor;
 
     @OneToMany(mappedBy = "survey", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<Question> questions;
