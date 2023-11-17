@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-3">
+    <h1 th:text="${searchValue}"/>
+
+    <div th:each="survey : ${surveys}">
+        <a th:href="'/survey/' + ${survey.id}">
+            <div><p th:text="${survey.name}"/></div>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
