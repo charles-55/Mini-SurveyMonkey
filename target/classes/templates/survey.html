@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${survey.name}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 th:text="${survey.name}"/>
+
+    <form action="#" th:action="'/survey/' + ${survey.id} + '/submit'" th:object="${survey}" method="post">
+        <ol>
+            <div th:each="question, questionIndex : *{questions}">
+                <li>
+                    <label for="answer-content" th:text="${question.content}"></label>
+                    <input class="form-control" id="answer-content" name="answers">
+                </li>
+
+            </div>
+        </ol>
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

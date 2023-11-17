@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,5 +35,16 @@ public class Surveyor {
      joinColumns={@JoinColumn(name="Surveyor_ID", referencedColumnName="ID")},
      inverseJoinColumns={@JoinColumn(name="Survey_ID", referencedColumnName="ID")})
      private List<Survey> Surveys = new ArrayList<>();**/
+
+    @OneToMany
+    private List<Survey> Surveys;
+
+    public void addSurveys(Survey survey){
+        Surveys.add(survey);
+    }
+    public void removeSurveys(Survey survey){
+        Surveys.remove(survey);
+    }
+
 
 }
