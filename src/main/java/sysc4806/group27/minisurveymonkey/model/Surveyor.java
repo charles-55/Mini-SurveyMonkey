@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -13,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="Surveyors")
+@Table(name="surveyors")
 
 public class Surveyor {
     @Id
@@ -36,14 +37,14 @@ public class Surveyor {
      inverseJoinColumns={@JoinColumn(name="Survey_ID", referencedColumnName="ID")})
      private List<Survey> Surveys = new ArrayList<>();**/
 
-    @OneToMany(mappedBy = "surveyors", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    private List<Survey> Surveys;
+    @OneToMany(mappedBy = "surveyor", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private List<Survey> surveys=new ArrayList<>();
 
-    public void addSurveys(Survey survey){
-        Surveys.add(survey);
+    public void addSurvey(Survey survey){
+        surveys.add(survey);
     }
-    public void removeSurveys(Survey survey){
-        Surveys.remove(survey);
+    public void removeSurvey(Survey survey){
+        surveys.remove(survey);
     }
 
 
