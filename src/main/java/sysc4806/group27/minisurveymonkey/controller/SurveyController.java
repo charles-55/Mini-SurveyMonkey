@@ -43,8 +43,8 @@ public class SurveyController {
     }
 
     @GetMapping("/survey/search")
-    public String searchSurveys(@RequestBody String searchValue, Model model) {
-        model.addAttribute("searchValue", searchValue);
+    public String searchSurveys(@RequestParam("searchInput") String searchValue, Model model) {
+        model.addAttribute("searchValue", "Search results for " + searchValue + ":");
         model.addAttribute("surveys", surveyService.searchByName(searchValue));
         return "surveySearch";
     }

@@ -15,9 +15,8 @@
             <div th:each="question, questionIndex : *{questions}">
                 <li>
                     <label for="answer-content" th:text="${question.content}"></label>
-                    <input class="form-control" id="answer-content" name="answers">
+                    <input type="text" class="form-control" id="answer-content" name="answers">
                 </li>
-
             </div>
         </ol>
         <button type="submit" class="btn btn-primary mt-3">Submit</button>

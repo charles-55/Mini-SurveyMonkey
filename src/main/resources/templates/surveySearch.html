@@ -7,11 +7,20 @@
 </head>
 <body>
 <div class="container mt-3">
-    <h1 th:text="${searchValue}"/>
+    <div style="text-align: center">
+        <form action="#" th:action="'/survey/search'" method="get">
+            <input type="text" name="searchInput">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+
+    <h3 th:text="${searchValue}"/>
 
     <div th:each="survey : ${surveys}">
         <a th:href="'/survey/' + ${survey.id}">
-            <div><p th:text="${survey.name}"/></div>
+            <tr>
+                <td th:text="${survey.name}"/>
+            </tr>
         </a>
     </div>
 </div>
