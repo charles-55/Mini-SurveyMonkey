@@ -71,8 +71,9 @@
             <groupId>org.ff4j</groupId>
             <artifactId>ff4j-web</artifactId>
             <scope>test</scope>
-            <version>2.0.0</version>
+            <version>1.9</version>
         </dependency>
+
     </dependencies>
 
     <build>
