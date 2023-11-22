@@ -14,7 +14,7 @@ public class FF4jConfig {
         FF4j ff4j = new FF4j();
 
         // Create a feature and add it to FF4J
-        Feature darkModeFeature = new Feature("darkMode", true, "Sets the dark mode for a page");
+        Feature darkModeFeature = new Feature("darkMode", false, "Sets the dark mode for a page");
         ff4j.getFeatureStore().create(darkModeFeature);
 
         // You can add more features and configurations here programmatically
