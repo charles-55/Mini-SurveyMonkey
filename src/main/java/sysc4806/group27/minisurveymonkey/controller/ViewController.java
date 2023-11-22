@@ -19,7 +19,8 @@ public class ViewController {
     public String index(Model model) {
         ff4j = new FF4jConfig().createFF4j();
         if(ff4j.check("darkMode")){
-            model.addAttribute("dark", true);
+//            model.addAttribute("dark", true);
+            System.out.println("Dark mode activated");
         }
         return "index";
     }
