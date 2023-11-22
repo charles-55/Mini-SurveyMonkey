@@ -19,7 +19,7 @@ public class ViewController {
 
     @GetMapping("/")
     public String index(Model model) {
-        System.out.println(featureToggleService.isDarkModeEnabled());
+//        System.out.println(featureToggleService.isDarkModeEnabled());
         model.addAttribute("darkModeEnabled", featureToggleService.isDarkModeEnabled());
         return "index2";
     }

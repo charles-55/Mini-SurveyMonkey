@@ -13,10 +13,6 @@ public class FeatureToggleService {
     private FF4j ff4j;
 
     public boolean isDarkModeEnabled() {
-//        ff4j = new FF4jConfig().getFF4j();
-//        if (!ff4j.exist("darkMode")) {
-//            ff4j.getFeatureStore().create(new Feature("darkMode", true, "Enables dark mode button for a page"));
-//        }
         return ff4j.check(FF4jConfig.DARK_MODE);
     }
 }
