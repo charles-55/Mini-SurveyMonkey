@@ -18,14 +18,14 @@ public class ResultController {
         this.surveyService = surveyService;
     }
 
-    @GetMapping("/results/{id}")
-    public String getSurveyResults(@PathVariable("id") int id, Model model){
-        model.addAttribute("survey", surveyService.getSurvey(id));
-
-        ff4j = new FF4jConfig().createFF4j();
-        if(ff4j.check("darkMode")){
-            System.out.println("DarkMode Activated");
-        }
-        return "result";
-    }
+//    @GetMapping("/results/{id}")
+//    public String getSurveyResults(@PathVariable("id") int id, Model model){
+//        model.addAttribute("survey", surveyService.getSurvey(id));
+//
+//        ff4j = new FF4jConfig().createFF4j();
+//        if(ff4j.check("darkMode")){
+//            System.out.println("DarkMode Activated");
+//        }
+//        return "result";
+//    }
 }

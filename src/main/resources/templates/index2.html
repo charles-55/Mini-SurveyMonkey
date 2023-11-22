@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Mini Survey Monkey</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/js/darkModeButton.js"></script>
+</head>
+<body>
+
+<div class = "container text-center mt-5">
+    <div th:if="${darkModeEnabled}" class="d-flex justify-content-end">
+        <input type="checkbox" class="btn-check" id="dark-mode-toggle">
+        <label class="btn btn-outline-primary" for="dark-mode-toggle">Dark Mode</label>
+    </div>
+    <h1>Welcome to Mini Survey Monkey</h1>
+    <h2>Explore and create surveys:</h2>
+    <br>
+    <div class="button-container">
+        <button class="btn btn-primary" onclick="window.location.href='/login'">Login</button>
+        <button class="btn btn-primary" onclick="window.location.href='/register'">Register</button>
+        <button class="btn btn-primary" onclick="window.location.href='/survey/add'">Create Survey</button>
+        <button class="btn btn-primary" onclick="window.location.href='/survey/all'">Find Survey</button>
+    </div>
+</div>
+
+</body>
+</html>
