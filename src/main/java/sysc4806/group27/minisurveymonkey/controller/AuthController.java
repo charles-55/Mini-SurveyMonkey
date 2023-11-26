@@ -1,8 +1,8 @@
 package sysc4806.group27.minisurveymonkey.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,7 +13,6 @@ import sysc4806.group27.minisurveymonkey.service.SurveyorService;
 import java.util.List;
 
 @Controller
-
 public class AuthController {
 
     @Autowired
@@ -25,22 +24,27 @@ public class AuthController {
         model.addAttribute("surveyor", surveyor);
         return "login";
     }
-    @GetMapping("/login/user")
-    public String loggedInSurveyor(@ModelAttribute("surveyor") Surveyor surveyor) {
+
+    @GetMapping("/logout")
+    public String logout(Model model){
+        model.addAttribute("loggedInState", false);
+        DataTracker.loggedInSurveyorId = 0;
+        return "redirect:/";
+    }
+
+    @PostMapping("/")
+    public String login(@ModelAttribute("surveyor") Surveyor surveyor, Model model) {
         List<Surveyor> existingUser = service.findAllSurveyor();
 
         for (Surveyor s : existingUser) {
             if (s.getEmail().equals(surveyor.getEmail()) && s.getPassword().equals(surveyor.getPassword())) {
-                System.out.println(s.getId());
-                return "index";
+                DataTracker.loggedInSurveyorId = s.getId();
+                model.addAttribute("loggedInState", true);
+                return "redirect:/";
             }
         }
         return "error" ;
     }
-
-
-
-
 
     // handler method to handle user registration form request
     @GetMapping("/register")
@@ -50,6 +54,7 @@ public class AuthController {
         model.addAttribute("user", user);
         return "register";
     }
+
     @PostMapping("/register/save")
     public String addSurveyor( @ModelAttribute("user") Surveyor surveyor, BindingResult result){
         List<Surveyor> existingUser = service.findAllSurveyor();
@@ -65,7 +70,6 @@ public class AuthController {
 
         }
         service.saveSurveyor(surveyor);
-        return "index";
+        return "redirect:/";
     }
-
 }

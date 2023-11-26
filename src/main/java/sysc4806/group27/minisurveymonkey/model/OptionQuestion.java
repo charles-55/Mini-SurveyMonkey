@@ -16,6 +16,7 @@ public class OptionQuestion extends Question {
     private ArrayList<String> answers;
 
     public OptionQuestion() {
+        setType(QuestionType.OPTION);
         options = new ArrayList<>();
         answers = new ArrayList<>();
     }

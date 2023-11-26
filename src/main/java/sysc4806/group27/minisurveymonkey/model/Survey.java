@@ -18,11 +18,13 @@ public class Survey {
     private String name;
     @ManyToOne
     private Surveyor surveyor;
-
+    @Column(name = "locked")
+    private boolean locked;
     @OneToMany(mappedBy = "survey", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<Question> questions;
 
     public Survey() {
+        locked = false;
         questions = new ArrayList<>();
     }
 

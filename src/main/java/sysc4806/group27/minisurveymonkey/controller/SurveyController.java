@@ -3,6 +3,7 @@ package sysc4806.group27.minisurveymonkey.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import sysc4806.group27.minisurveymonkey.model.*;
 import sysc4806.group27.minisurveymonkey.service.SurveyService;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class SurveyController {
             @RequestParam("range-max") List<Integer> rangeQuestionMaxs,
             @RequestParam("range-step") List<Integer> rangeQuestionSteps,
             @RequestParam("mchoice-options") List<String> optionQuestionOptions) {
-        surveyService.createNewSurvey(surveyTitle, questionTypes, questionContents,
+        surveyService.createNewSurvey(DataTracker.loggedInSurveyorId, surveyTitle, questionTypes, questionContents,
                 rangeQuestionMins, rangeQuestionMaxs, rangeQuestionSteps, optionQuestionOptions);
         return "createSuccess";
     }
@@ -51,7 +52,17 @@ public class SurveyController {
 
     @GetMapping("/survey/{surveyId}")
     public String showSurvey(@PathVariable("surveyId") int surveyId, Model model) {
-        model.addAttribute("survey", surveyService.getSurvey(surveyId));
+        Survey survey = surveyService.getSurvey(surveyId);
+        model.addAttribute("survey", survey);
+        model.addAttribute("questions", survey.getQuestions());
+//        for(Question question : survey.getQuestions()) {
+//            if(question instanceof OpenEndedQuestion)
+//                model.addAttribute("questions", (OpenEndedQuestion) question);
+//            else if(question instanceof NumberQuestion)
+//                model.addAttribute("questions", (NumberQuestion) question);
+//            else if(question instanceof OptionQuestion)
+//                model.addAttribute("questions", (OptionQuestion) question);
+//        }
         return "survey";
     }
 
