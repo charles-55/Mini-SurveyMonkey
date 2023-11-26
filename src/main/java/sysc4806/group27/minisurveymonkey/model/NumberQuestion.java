@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashMap;
+import java.util.Map;
+
 @Entity
 @Getter
 @Setter
@@ -21,13 +23,14 @@ public class NumberQuestion extends Question {
     @CollectionTable(name = "numberQuestionAnswers", joinColumns = @JoinColumn(name = "id"))
     @MapKeyJoinColumn(name = "question_id")
     @Column(name = "selections")
-    private HashMap<Integer, Integer> answers;
+    private Map<Integer, Integer> answers;
 
     public NumberQuestion() {
         this(0, 10, 1);
     }
 
     public NumberQuestion(int minVal, int maxVal, int stepVal) {
+        setType(QuestionType.NUMBER);
         this.minVal = minVal;
         this.maxVal = maxVal;
         this.stepVal = stepVal;

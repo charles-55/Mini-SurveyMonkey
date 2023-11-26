@@ -1,6 +1,7 @@
 package sysc4806.group27.minisurveymonkey.service;
 
 import org.springframework.stereotype.Service;
+import sysc4806.group27.minisurveymonkey.model.Survey;
 import sysc4806.group27.minisurveymonkey.model.Surveyor;
 import sysc4806.group27.minisurveymonkey.repository.SurveyorRepository;
 
@@ -30,9 +31,9 @@ public class SurveyorService {
                 .collect(Collectors.toList());
     }
 
-    /** public Surveyor findUserByEmail(String email) {
-     return surveyorRepository.findByEmail(email);
-     }
-     **/
-
+    public void addSurvey(long surveyorId, Survey survey) {
+        Surveyor surveyor = surveyorRepository.findById(surveyorId);
+        surveyor.addSurvey(survey);
+        surveyorRepository.save(surveyor);
+    }
 }
