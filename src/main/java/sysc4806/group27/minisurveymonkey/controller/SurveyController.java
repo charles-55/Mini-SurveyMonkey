@@ -32,7 +32,7 @@ public class SurveyController {
             @RequestParam("mchoice-options") List<String> optionQuestionOptions) {
         surveyService.createNewSurvey(surveyTitle, questionTypes, questionContents,
                 rangeQuestionMins, rangeQuestionMaxs, rangeQuestionSteps, optionQuestionOptions);
-        return "index";
+        return "createSuccess";
     }
 
     @GetMapping("/survey/all")
