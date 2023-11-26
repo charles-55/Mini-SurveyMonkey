@@ -14,6 +14,7 @@ public class NumberQuestion extends Question {
     private Long id;
     private int minVal;
     private int maxVal;
+    private int stepVal;
 
     //Answers with first integer as the range value and the second integer as the count
     @ElementCollection
@@ -23,21 +24,22 @@ public class NumberQuestion extends Question {
     private HashMap<Integer, Integer> answers;
 
     public NumberQuestion() {
-        this(0, 10);
+        this(0, 10, 1);
     }
 
-    public NumberQuestion(int minVal, int maxVal){
+    public NumberQuestion(int minVal, int maxVal, int stepVal) {
         this.minVal = minVal;
         this.maxVal = maxVal;
+        this.stepVal = stepVal;
 
-        int x = minVal;
-        int y = maxVal-minVal;
+//        int x = minVal;
+//        int y = maxVal-minVal;
 
-        //instantiate and initialize every key to have a count of 0
-        answers = new HashMap<>();
-        for(; x<y; x++){
-            answers.put(x, 0);
-        }
+//        //instantiate and initialize every key to have a count of 0
+//        answers = new HashMap<>();
+//        for(; x<y; x+=stepVal){
+//            answers.put(x, 0);
+//        }
     }
 
     public void addCount(int key){
