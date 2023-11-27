@@ -31,11 +31,9 @@ A mini-survey monkey web application that allows a surveyor to create a survey w
 - Login/registration feature:
   - Users can register on registration page and are saved to the Database
   - Only registered users can log in, if not registered, users trying to log in will be sent to error page
-  - Login view is not yet set up, (all users have the same view, currently)
-  - Logout functionality is not yet set up
 - Create new survey feature:
   - Users can create a survey giving a title, and adding questions based on selected question type and content
-  - Users can select from open-ended, range, and multi-choice questions to add, but treats all question types as open-ended for now
+  - Users can select from open-ended, range, and multi-choice questions to add
   - Survey form is dynamic, users can add and remove questions, at least one question stays on the page at all times
 - Select survey / take survey
   - All surveys in the DB are retrieved and can be displayed
@@ -46,21 +44,22 @@ A mini-survey monkey web application that allows a surveyor to create a survey w
 
 ## Plan for next Sprint
 - Login/registration feature:
-  - Implement separate logged-in view for logged in surveyors
-  - Implement Logout functionality
+  - Make a user logged in when they just registered
 - Create new survey feature:
-  - Add fields for additional inputs associated with range and multi-choice questions
-  - Values should be saved appropriately in DB
-- Select survey / take survey:
-  - Surveys should display different fields (not just text areas) based on the type of question and additional info saved from the create survey form (range, options)
-  - Values should be saved appropriately in DB
+  - Make handling of options more dynamic
 - Display results of survey:
   - Surveys should display summarization of answers based on question type
-    - for range, so sort of histogram interpretation
-    - for option question so sort of pie-chart (or percentage) interpretation
+    - for range, a histogram interpretation
+    - for option question, a pie-chart interpretation
+- Account page:
+  - Add a page to allow surveyors:
+    - see all their created surveys
+    - vie the results of their surveys
+    - lock and unlock a survey
 
 ## Database Schema as of Milestone 1
 ![image](https://github.com/charles-55/Mini-SurveyMonkey/assets/77470047/8e5ff22f-e72b-4987-b40d-165c8b9a3057)
 
 ## Model UML Diagram as of Milestone 1
-![image](https://github.com/charles-55/Mini-SurveyMonkey/assets/59775183/676e2ae8-8211-4063-8f1a-ee6db1da76f5)
+![modeldiagram](https://github.com/charles-55/Mini-SurveyMonkey/assets/59775183/c277dab6-fbd9-4e8e-b74a-d8702ca3f12f)
+
