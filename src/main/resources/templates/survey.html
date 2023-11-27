@@ -19,10 +19,21 @@
                     <label th:text="${question.content}"></label>
                     <div th:switch="${question.type.toString()}">
                         <input th:case="'OPEN_ENDED'" type="text" class="form-control" name="answers">
-                        <input th:case="'NUMBER'" type="text" class="form-control" name="answers">
-                        <div th:case="'OPTION'" th:each="option : ${question.getOptions()}">
-                            <input type="radio" th:text="option" name="answers">
-                        </div>
+	                    <div th:case="'NUMBER'">
+		                    <input type="range" class="form-control" name="answers" th:min="${question.getMinVal()}" th:max="${question.getMaxVal()}" th:step="${question.getStepVal()}" oninput="showSelection(this.value)">
+		                    <span id="input"></span>
+		                    <script>
+			                    function showSelection(value) {
+				                    document.getElementById("input").innerHTML = value;
+			                    }
+		                    </script>
+	                    </div>
+	                    <div th:each="option, optionIndex : ${question.getOptions()}">
+		                    <label>
+			                    <input type="radio" th:value="${option}" />
+			                    <span th:text="${option}"></span>
+		                    </label>
+	                    </div>
                     </div>
                 </li>
             </div>

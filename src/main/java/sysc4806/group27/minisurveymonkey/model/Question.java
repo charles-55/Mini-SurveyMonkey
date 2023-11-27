@@ -26,4 +26,16 @@ public abstract class Question {
     public List<String> getOptions() {
         return null;
     }
+
+    public int getMinVal() {
+        return -1;
+    }
+
+    public int getMaxVal() {
+        return -1;
+    }
+
+    public int getStepVal() {
+        return -1;
+    }
 }
