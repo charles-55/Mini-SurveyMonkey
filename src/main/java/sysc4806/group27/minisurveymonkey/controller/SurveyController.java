@@ -3,6 +3,7 @@ package sysc4806.group27.minisurveymonkey.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import sysc4806.group27.minisurveymonkey.model.*;
 import sysc4806.group27.minisurveymonkey.service.SurveyService;
 
 import java.util.List;
@@ -25,9 +26,14 @@ public class SurveyController {
     public String addSurvey(
             @RequestParam("survey-title") String surveyTitle,
             @RequestParam("question-type") List<String> questionTypes,
-            @RequestParam("question-content") List<String> questionContents) {
-        surveyService.createNewSurvey(surveyTitle, questionTypes, questionContents);
-        return "index";
+            @RequestParam("question-content") List<String> questionContents,
+            @RequestParam("range-min") List<Integer> rangeQuestionMins,
+            @RequestParam("range-max") List<Integer> rangeQuestionMaxs,
+            @RequestParam("range-step") List<Integer> rangeQuestionSteps,
+            @RequestParam("mchoice-options") List<String> optionQuestionOptions) {
+        surveyService.createNewSurvey(DataTracker.loggedInSurveyorId, surveyTitle, questionTypes, questionContents,
+                rangeQuestionMins, rangeQuestionMaxs, rangeQuestionSteps, optionQuestionOptions);
+        return "createSuccess";
     }
 
     @GetMapping("/survey/all")
@@ -38,15 +44,17 @@ public class SurveyController {
     }
 
     @GetMapping("/survey/search")
-    public String searchSurveys(@RequestBody String searchValue, Model model) {
-        model.addAttribute("searchValue", searchValue);
+    public String searchSurveys(@RequestParam("searchInput") String searchValue, Model model) {
+        model.addAttribute("searchValue", "Search results for " + searchValue + ":");
         model.addAttribute("surveys", surveyService.searchByName(searchValue));
         return "surveySearch";
     }
 
     @GetMapping("/survey/{surveyId}")
     public String showSurvey(@PathVariable("surveyId") int surveyId, Model model) {
-        model.addAttribute("survey", surveyService.getSurvey(surveyId));
+        Survey survey = surveyService.getSurvey(surveyId);
+        model.addAttribute("survey", survey);
+        model.addAttribute("questions", survey.getQuestions());
         return "survey";
     }
 

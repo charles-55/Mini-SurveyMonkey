@@ -1,6 +1,5 @@
 package sysc4806.group27.minisurveymonkey.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sysc4806.group27.minisurveymonkey.model.*;
 import sysc4806.group27.minisurveymonkey.repository.SurveyRepository;
@@ -13,9 +12,11 @@ public class SurveyService {
 
     private final SurveyRepository surveyRepo;
 
-    @Autowired
-    public SurveyService(SurveyRepository surveyRepo) {
+    private final SurveyorService surveyorService;
+
+    public SurveyService(SurveyRepository surveyRepo, SurveyorService surveyorService) {
         this.surveyRepo = surveyRepo;
+        this.surveyorService = surveyorService;
     }
 
     public OpenEndedQuestion addQuestion(String surveyName, OpenEndedQuestion question) {
@@ -25,9 +26,10 @@ public class SurveyService {
         return question;
     }
 
-    public void createNewSurvey(String surveyTitle,
-                                List<String> questionTypes,
-                                List<String> questionContents) {
+    public void createNewSurvey(long surveyorId, String surveyTitle,
+                                List<String> questionTypes, List<String> questionContents,
+                                List<Integer> rangeQuestionMins, List<Integer> rangeQuestionMaxs, List<Integer> rangeQuestionSteps,
+                                List<String> optionQuestionOptions) {
         Survey survey = new Survey(surveyTitle);
         surveyRepo.save(survey);
         for (int i = 0; i < questionTypes.size(); i++) {
@@ -39,13 +41,21 @@ public class SurveyService {
                     survey.addQuestion(openEndedQuestion);
                 }
                 case "range" -> {
-                    NumberQuestion numberQuestion = new NumberQuestion();
+                    NumberQuestion numberQuestion = new NumberQuestion(
+                            rangeQuestionMins.get(i),
+                            rangeQuestionMaxs.get(i),
+                            rangeQuestionSteps.get(i));
                     numberQuestion.setSurvey(survey);
                     numberQuestion.setContent(questionContents.get(i));
                     survey.addQuestion(numberQuestion);
                 }
                 case "option" -> {
                     OptionQuestion optionQuestion = new OptionQuestion();
+                    String optionsStr = optionQuestionOptions.get(i);
+                    String[] options = optionsStr.split("\\|");
+                    for (String option: options) {
+                        optionQuestion.addOption(option);
+                    }
                     optionQuestion.setSurvey(survey);
                     optionQuestion.setContent(questionContents.get(i));
                     survey.addQuestion(optionQuestion);
@@ -55,6 +65,8 @@ public class SurveyService {
                 }
             }
         }
+
+        surveyorService.addSurvey(surveyorId, survey);
         surveyRepo.save(survey);
     }
 
@@ -62,12 +74,16 @@ public class SurveyService {
         List<Survey> surveys = new ArrayList<>();
         List<Survey> surveyList = (List<Survey>) surveyRepo.findAll();
 
+        return createSurveyCopyList(surveys, surveyList);
+    }
+
+    private List<Survey> createSurveyCopyList(List<Survey> surveys, List<Survey> surveyList) {
         for(Survey survey : surveyList) {
             Survey newSurvey = new Survey();
             newSurvey.setName(survey.getName());
             for(Question question : survey.getQuestions())
                 newSurvey.addQuestion(question);
-          
+
             surveys.add(survey);
         }
 
@@ -83,6 +99,13 @@ public class SurveyService {
         for(Question question : survey1.getQuestions())
             survey.addQuestion(question);
         return survey;
+    }
+
+    public List<Survey> searchByAvailability(boolean isLocked) {
+        List<Survey> surveys = new ArrayList<>();
+        List<Survey> surveyList = (List<Survey>) surveyRepo.findByLocked(isLocked);
+
+        return createSurveyCopyList(surveys, surveyList);
     }
 
     public List<Survey> searchByName(String name) {

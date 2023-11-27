@@ -3,17 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Search</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link href="/css/main.css" rel="stylesheet">
+	<script src="/js/main.js"></script>
 </head>
 <body>
 <div class="container mt-3">
-    <h1 th:text="${searchValue}"/>
-
-    <div th:each="survey : ${surveys}">
-        <a th:href="'/survey/' + ${survey.id}">
-            <div><p th:text="${survey.name}"/></div>
-        </a>
+    <div style="align-items: center; text-align: center">
+        <form action="#" th:action="'/survey/search'" method="get">
+            <input type="text" name="searchInput" placeholder="Search..." style="margin-right: 5px; width: 500px">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
     </div>
+
+    <h3 th:text="${searchValue}"/>
+
+    <table style="width: 100%">
+        <div th:each="survey : ${surveys}">
+            <tr>
+                <td th:text="${survey.name}"/>
+                <td style="color: red; text-align: center" th:if="${survey.locked}" th:text="'Closed'"/>
+                <td style="color: green; text-align: center" th:if="${!survey.locked}" th:text="'Open'"/>
+                <td style="text-align: center"><a class="btn btn-outline-primary" th:href="'/survey/' + ${survey.id}" role="button">Select</a></td>
+            </tr>
+        </div>
+    </table>
 </div>
 
 </body>

@@ -1,5 +1,6 @@
 //package sysc4806.group27.minisurveymonkey;
 //
+//import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -21,6 +22,9 @@
 //    private MockMvc mockMvc;
 //    @Autowired
 //    private SurveyRepository surveyRepository;
+//
+//    @BeforeEach
+//
 //
 //    @Test
 //    public void allSurveys() throws Exception {
