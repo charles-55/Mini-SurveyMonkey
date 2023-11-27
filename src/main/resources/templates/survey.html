@@ -30,7 +30,7 @@
 	                    </div>
 	                    <div th:each="option, optionIndex : ${question.getOptions()}">
 		                    <label>
-			                    <input type="radio" th:value="${option}" />
+			                    <input type="radio" th:value="${option}" name="answers"/>
 			                    <span th:text="${option}"></span>
 		                    </label>
 	                    </div>

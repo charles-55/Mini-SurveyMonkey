@@ -1,6 +1,3 @@
-// localStorage.setItem("colorMode", "light");
-// localStorage.setItem("loggedIn", "false");
-
 function createNavBar() {
     const div = document.createElement("div");
     div.id = "navBar";
