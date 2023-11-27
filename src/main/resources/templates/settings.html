@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Settings</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link href="/css/main.css" rel="stylesheet">
+	<script src="/js/main.js"></script>
+</head>
+<body>
+<div class="container mt-3">
+	<div th:if="${darkFeatureEnabled}">
+		<h3>Theme Preferences</h3>
+		<hr>
+		<span>Dark Mode: </span>
+		<button id="darkModeButton" class="btn btn-primary" onclick="changeColorMode()"></button>
+		<script>
+			const button = document.getElementById("darkModeButton");
+
+			if(localStorage.getItem("colorMode") === "light")
+				button.textContent = "Enable";
+			else
+				button.textContent = "Disable";
+
+			function changeColorMode() {
+				if(localStorage.getItem("colorMode") === "light") {
+					localStorage.setItem("colorMode", "dark");
+					button.textContent = "Disable";
+				}
+				else {
+					localStorage.setItem("colorMode", "light");
+					button.textContent = "Enable";
+				}
+
+				document.body.setAttribute("data-bs-theme", localStorage.getItem("colorMode"));
+			}
+		</script>
+	</div>
+
+	<div th:unless="${darkFeatureEnabled}">
+		<h3>Sorry, no settings to change at the moment.</h3>
+	</div>
+</div>
+
+</body>
+</html>

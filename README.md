@@ -57,9 +57,10 @@ A mini-survey monkey web application that allows a surveyor to create a survey w
     - vie the results of their surveys
     - lock and unlock a survey
 
-## Database Schema as of Milestone 1
-![image](https://github.com/charles-55/Mini-SurveyMonkey/assets/77470047/8e5ff22f-e72b-4987-b40d-165c8b9a3057)
+## Database Schema as of Milestone 2
+![mydb](https://github.com/charles-55/Mini-SurveyMonkey/assets/59775183/735e031b-2320-406d-935c-286306a60765)
 
-## Model UML Diagram as of Milestone 1
+
+## Model UML Diagram as of Milestone 2
 ![modeldiagram](https://github.com/charles-55/Mini-SurveyMonkey/assets/59775183/c277dab6-fbd9-4e8e-b74a-d8702ca3f12f)
 

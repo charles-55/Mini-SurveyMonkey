@@ -9,6 +9,7 @@ public class OpenEndedQuestion extends Question {
     private ArrayList<String> answers;
 
     public OpenEndedQuestion() {
+        setType(QuestionType.OPEN_ENDED);
         answers = new ArrayList<>();
     }
   
