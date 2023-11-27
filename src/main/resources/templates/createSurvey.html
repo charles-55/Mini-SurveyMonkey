@@ -33,14 +33,14 @@
         <div id="questions-container" class="form-group">
             <fieldset class="question-set">
                 <legend>Question</legend>
-                <label for="question-content">Enter question content:</label>
-                <input class="form-control" id="question-content" name="question-content">
                 <label for="question-type">Select your question type</label>
                 <select class="form-control question-sel-type" id="question-type" name="question-type">
                     <option value="open-ended">Open-Ended</option>
                     <option value="range">Range</option>
                     <option value="option">Multi-choice</option>
                 </select>
+                <label for="question-content">Enter question content:</label>
+                <input class="form-control" id="question-content" name="question-content">
                 <div class="question-type-inputs" id="range-question-inputs" style="display: none;">
                     <br>
                     <h6>Enter the minimum, maximum, and step values for your range bar</h6>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="question-type-inputs" id="mchoice-question-inputs" style="display: none;">
                     <br>
-                    <h6>Enter the option values you would like with your question</h6>
+                    <h6 >Enter the option values you would like with your question</h6>
                     <label for="mchoice-options">Example: If you want a, b, and c as your options insert a|b|c in the field below:</label>
                     <input class="form-control" id="mchoice-options" name="mchoice-options">
                 </div>
@@ -61,6 +61,7 @@
         </div>
         <div class="form-group">
             <button type="button" class="btn btn-primary mt-3" id="add-question-btn">Add Question (+)</button>
+            <button type="button" class="btn btn-primary mt-3" id="add-option-btn">Add Option(+)</button>
             <button type="button" class="btn btn-primary mt-3" id="rem-question-btn">Remove Last Question (-)</button>
             <button type="submit" class="btn btn-primary mt-3" id="submit-survey-btn">Save Survey</button>
         </div>
