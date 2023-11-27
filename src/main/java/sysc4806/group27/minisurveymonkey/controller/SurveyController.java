@@ -55,14 +55,6 @@ public class SurveyController {
         Survey survey = surveyService.getSurvey(surveyId);
         model.addAttribute("survey", survey);
         model.addAttribute("questions", survey.getQuestions());
-//        for(Question question : survey.getQuestions()) {
-//            if(question instanceof OpenEndedQuestion)
-//                model.addAttribute("questions", (OpenEndedQuestion) question);
-//            else if(question instanceof NumberQuestion)
-//                model.addAttribute("questions", (NumberQuestion) question);
-//            else if(question instanceof OptionQuestion)
-//                model.addAttribute("questions", (OptionQuestion) question);
-//        }
         return "survey";
     }
 
