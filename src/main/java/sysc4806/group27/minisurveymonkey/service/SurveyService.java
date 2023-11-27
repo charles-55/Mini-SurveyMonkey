@@ -25,7 +25,7 @@ public class SurveyService {
         return question;
     }
 
-    public void createNewSurvey(String surveyTitle,
+    public Survey createNewSurvey(String surveyTitle,
                                 List<String> questionTypes, List<String> questionContents,
                                 List<Integer> rangeQuestionMins, List<Integer> rangeQuestionMaxs, List<Integer> rangeQuestionSteps,
                                 List<String> optionQuestionOptions) {
@@ -65,6 +65,7 @@ public class SurveyService {
             }
         }
         surveyRepo.save(survey);
+        return survey;
     }
 
     public List<Survey> getAllSurveys() {

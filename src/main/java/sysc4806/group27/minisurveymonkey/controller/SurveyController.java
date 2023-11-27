@@ -3,6 +3,7 @@ package sysc4806.group27.minisurveymonkey.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import sysc4806.group27.minisurveymonkey.model.Survey;
 import sysc4806.group27.minisurveymonkey.service.SurveyService;
 
 import java.util.List;
@@ -29,9 +30,11 @@ public class SurveyController {
             @RequestParam("range-min") List<Integer> rangeQuestionMins,
             @RequestParam("range-max") List<Integer> rangeQuestionMaxs,
             @RequestParam("range-step") List<Integer> rangeQuestionSteps,
-            @RequestParam("mchoice-options") List<String> optionQuestionOptions) {
-        surveyService.createNewSurvey(surveyTitle, questionTypes, questionContents,
+            @RequestParam("mchoice-options") List<String> optionQuestionOptions,
+            Model model) {
+        Survey survey = surveyService.createNewSurvey(surveyTitle, questionTypes, questionContents,
                 rangeQuestionMins, rangeQuestionMaxs, rangeQuestionSteps, optionQuestionOptions);
+        model.addAttribute("survey", survey);
         return "createSuccess";
     }
 
