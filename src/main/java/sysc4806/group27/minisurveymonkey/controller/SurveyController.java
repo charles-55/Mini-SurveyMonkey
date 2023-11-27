@@ -25,9 +25,14 @@ public class SurveyController {
     public String addSurvey(
             @RequestParam("survey-title") String surveyTitle,
             @RequestParam("question-type") List<String> questionTypes,
-            @RequestParam("question-content") List<String> questionContents) {
-        surveyService.createNewSurvey(surveyTitle, questionTypes, questionContents);
-        return "index";
+            @RequestParam("question-content") List<String> questionContents,
+            @RequestParam("range-min") List<Integer> rangeQuestionMins,
+            @RequestParam("range-max") List<Integer> rangeQuestionMaxs,
+            @RequestParam("range-step") List<Integer> rangeQuestionSteps,
+            @RequestParam("mchoice-options") List<String> optionQuestionOptions) {
+        surveyService.createNewSurvey(surveyTitle, questionTypes, questionContents,
+                rangeQuestionMins, rangeQuestionMaxs, rangeQuestionSteps, optionQuestionOptions);
+        return "createSuccess";
     }
 
     @GetMapping("/survey/all")

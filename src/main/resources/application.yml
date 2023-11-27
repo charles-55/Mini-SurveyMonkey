@@ -22,3 +22,7 @@ spring:
         show-sql: true
     main:
         web-application-type: servlet
+
+ff4j:
+    webapi:
+        authentication: false

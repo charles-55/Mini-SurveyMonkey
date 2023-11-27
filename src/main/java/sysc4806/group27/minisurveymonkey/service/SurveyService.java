@@ -26,8 +26,9 @@ public class SurveyService {
     }
 
     public void createNewSurvey(String surveyTitle,
-                                List<String> questionTypes,
-                                List<String> questionContents) {
+                                List<String> questionTypes, List<String> questionContents,
+                                List<Integer> rangeQuestionMins, List<Integer> rangeQuestionMaxs, List<Integer> rangeQuestionSteps,
+                                List<String> optionQuestionOptions) {
         Survey survey = new Survey(surveyTitle);
         surveyRepo.save(survey);
         for (int i = 0; i < questionTypes.size(); i++) {
@@ -39,13 +40,21 @@ public class SurveyService {
                     survey.addQuestion(openEndedQuestion);
                 }
                 case "range" -> {
-                    NumberQuestion numberQuestion = new NumberQuestion();
+                    NumberQuestion numberQuestion = new NumberQuestion(
+                            rangeQuestionMins.get(i),
+                            rangeQuestionMaxs.get(i),
+                            rangeQuestionSteps.get(i));
                     numberQuestion.setSurvey(survey);
                     numberQuestion.setContent(questionContents.get(i));
                     survey.addQuestion(numberQuestion);
                 }
                 case "option" -> {
                     OptionQuestion optionQuestion = new OptionQuestion();
+                    String optionsStr = optionQuestionOptions.get(i);
+                    String[] options = optionsStr.split("\\|");
+                    for (String option: options) {
+                        optionQuestion.addOption(option);
+                    }
                     optionQuestion.setSurvey(survey);
                     optionQuestion.setContent(questionContents.get(i));
                     survey.addQuestion(optionQuestion);
