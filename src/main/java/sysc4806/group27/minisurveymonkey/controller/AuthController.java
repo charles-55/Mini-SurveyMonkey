@@ -72,4 +72,18 @@ public class AuthController {
         service.saveSurveyor(surveyor);
         return "redirect:/";
     }
+    @GetMapping("/Account")
+    public String AccountPage( Model model) {
+        List<Surveyor> existingUser = service.findAllSurveyor();
+        System.out.println(DataTracker.loggedInSurveyorId);
+        for (Surveyor s : existingUser) {
+            if (s.getId() == DataTracker.loggedInSurveyorId) {
+                model.addAttribute("loggedInUser", s);
+                break;
+            }
+        }
+        return "accountPage";
+    }
+
+
 }
