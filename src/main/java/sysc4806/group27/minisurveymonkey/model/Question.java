@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Getter
@@ -22,14 +23,7 @@ public abstract class Question {
 
     public abstract Object getAnswers();
 
-    public HashMap<String, Integer> getAnswerAsMap() {
-        try {
-            return (HashMap<String, Integer>) getAnswers();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+    public abstract Map<String, Integer> getAnswerAsMap();
 
     public abstract void addAnswer(String s);
 
