@@ -7,37 +7,59 @@
 	<link href="/css/main.css" rel="stylesheet">
 	<script src="/js/main.js"></script>
 
+<!--    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
+
+
 </head>
 <body>
+<p class="title" th:text="'Results for Survey - ' + ${survey.name}" />
+<hr>
 
-<div class="container mt-3">
+<div class="allQuestions" th:each="question, iterator : ${survey.questions}">
+    <p class="question" th:text="'Question ' + ${iterator.count}"/>
+    <p class="question" th:text="${question.content} "/>
 
-    <h1 style="text-align: center" th:text="'Results for Survey - ' + ${survey.name}" />
-    <hr>
-
-    <div th:each="question, iterator : ${survey.getQuestions()}">
-        <h5 th:text="'Question ' + ${iterator.count} + ': ' + ${question.content}"/>
-
-        <div th:switch="${question.type.toString()}">
-
-            <div th:case="'OPEN_ENDED'" th:each="answer: ${question.answers}">
-                <ul th:each="answer: ${question.answers}">
-                    <li th:text="${answer}"/>
-                </ul>
+    <div th:switch="${question.type.toString()}">
+        <div th:case="'OPEN_ENDED'" th:each="answer: ${question.answers}">
+            <ul th:each="answer: ${question.answers}">
+                <li th:text="${answer}"/>
+            </ul>
+        </div>
+        <div th:case="'NUMBER'">
+            <div th:each="option: ${question.getAnswerAsMap().keySet()}">
+                <p th:text="${option} + ': ' + ${question.getAnswerAsMap().get(option)}"></p>
+<!--                <div id="chart_div" style="width: 900px; height: 500px;"></div>-->
             </div>
+            <div>
+<!--                <script type="text/javascript">-->
+<!--                    google.charts.load("current", {packages:["corechart"]});-->
+<!--                    google.charts.setOnLoadCallback(drawChart);-->
 
-            <div th:case="'NUMBER'" th:each="answer: ${question.answers}">
-                <div th:each="answer: ${question.getAnswerAsMap()}">
+<!--                    function drawChart() {-->
+<!--                        // Assuming question.getAnswerAsMap() is a JavaScript object-->
+<!--                        var answerData = [];-->
 
-                    <div th:text="${answer.key}"></div>
+<!--                        // Convert the answerData into an array of arrays-->
+<!--                        var dataArray = [];-->
+<!--                        dataArray.push(...Object.entries(answerData).map(([option, value]) => [option, value]));-->
+<!--                        console.log(dataArray);-->
 
-                </div>
+<!--                        var data = google.visualization.arrayToDataTable(dataArray);-->
+
+<!--                        var options = {-->
+<!--                            title: 'Your Chart Title',-->
+<!--                            legend: { position: 'none' },-->
+<!--                        };-->
+
+<!--                        var chart = new google.visualization.Histogram(document.getElementById('chart_div'));-->
+<!--                        chart.draw(data, options);-->
+<!--                    }-->
+<!--                </script>-->
             </div>
-
-            <div th:case="'OPTION'" th:each="answer: ${question.answers}">
-                <div th:each="answer: ${question.answers}">
-                    <p th:text="${answer}"/>
-                </div>
+        </div>
+        <div th:case="'OPTION'">
+            <div th:each="option: ${question.getAnswerAsMap().keySet()}">
+                <p th:text="${option} + ': ' + ${question.getAnswerAsMap().get(option)}"></p>
             </div>
         </div>
     </div>

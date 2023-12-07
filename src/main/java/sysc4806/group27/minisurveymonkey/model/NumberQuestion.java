@@ -1,5 +1,7 @@
 package sysc4806.group27.minisurveymonkey.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,12 +49,22 @@ public class NumberQuestion extends Question {
 
     @Override
     public void addAnswer(String s) {
-        answers.replace(s, answers.get(s)+1);
+        answers.replace(s, answers.get(s) + 1);
     }
 
     @Override
     public Object getAnswers(){
         return this.answers;
+    }
+
+    @Override
+    public Map<String, Integer> getAnswerAsMap() {
+        return answers;
+    }
+
+    public Object getJSONMap() throws JsonProcessingException {
+        String map = new ObjectMapper().writeValueAsString(this.answers);
+        return map;
     }
 
 }
