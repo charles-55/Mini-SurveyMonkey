@@ -1,0 +1,31 @@
+.welcome{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 10px; /* Adjust the spacing as needed */
+    width: 100%; /* Optional: Makes the table take the full width */
+}
+
+/* Style for the table cells */
+td {
+    padding: 10px; /* Adds space inside each cell */
+    text-align: center; /* Optional: Center-aligns the text */
+    /* Add more styling as needed */
+}
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button{
+    border: black;
+    transition: font-size 0.3s ease;
+}
+.button:hover{
+    font-size: 10px;
+}
