@@ -29,3 +29,6 @@ td {
 .button:hover{
     font-size: 10px;
 }
+.image-container {
+    text-align: center;
+}
