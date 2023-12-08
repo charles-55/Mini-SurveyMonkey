@@ -136,4 +136,10 @@ public class SurveyService {
 
         surveyRepo.save(survey);
     }
+
+    public void toggleSurveyAccess(int id) {
+        Survey survey = surveyRepo.findById(id);
+        survey.setLocked(!survey.isLocked());
+        surveyRepo.save(survey);
+    }
 }

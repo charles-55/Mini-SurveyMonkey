@@ -11,16 +11,15 @@
 <body>
 
 <div class="container mt-3">
-    <h3 class="title" th:text="'Survey Results: '+ ${survey.name}" />
+	<h3 class="title" th:text="'Survey Results: '+ ${survey.name}" />
     <hr>
 
     <div class="allQuestions" th:each="question, iterator : ${survey.questions}">
-        <p class="question" th:text="'Question ' + ${iterator.count}"/>
-        <p class="question" th:text="${question.content} "/>
+	    <p th:utext="${'<b>Question '} + ${iterator.count} + ${':</b> '} + ${question.content}"></p>
 
-        <div th:switch="${question.type.toString()}">
-            <div th:case="'OPEN_ENDED'" th:each="answer: ${question.answers}">
-                <ul th:each="answer: ${question.answers}">
+	    <div th:switch="${question.type.toString()}">
+	        <div th:case="'OPEN_ENDED'" th:each="answer: ${question.answers}">
+		        <ul th:each="answer: ${question.answers}">
                     <li th:text="${answer}"/>
                 </ul>
             </div>
@@ -29,64 +28,73 @@
                     <canvas id="histogramChart" width="100px" height="50px"></canvas>
                 </div>
                 <script th:inline="javascript">
-                    /*<![CDATA[*/
                     const map = /*[[${question.getAnswerAsMap()}]]*/ null;
-                    /*]]>*/
 
-                    const values = Object.values(map);
-                    const keys = Object.keys(map);
+		            const values = Object.values(map);
+					const keys = Object.keys(map)
 
-                    console.log(keys);
-
-                    const ctx = document.getElementById('histogramChart');
-                    const config = {
-                        type: "bar",
-                        data: {
-                            labels: keys,
-                            datasets: [{
-                                label: "Number of Selections",
-                                data: values}],
-                        }
-                    };
+		            const ctx = document.getElementById('histogramChart');
+		            const config = {
+			            type: "bar",
+			            data: {
+				            labels: keys,
+				            datasets: [{
+					            label: "Number of Selections",
+					            data: values}],
+			            },
+			            options: {
+				            plugins: {
+					            legend: {
+						            display: true,
+						            position: 'top'
+					            }
+				            },
+				            layout: {
+					            padding: {
+						            left: 0,
+						            right: 0,
+						            top: 0,
+						            bottom: 0
+					            }
+				            }
+			            }
+		            };
 
                     new Chart(ctx, config);
                 </script>
             </div>
-        <div th:case="'OPTION'">
-            <div th:each="option, iterator : ${question.getAnswerAsMap().keySet()}">
-                <p th:text="${option} + ': ' + ${question.getAnswerAsMap().get(option)}"></p>
-            </div>
+	        <div th:case="'OPTION'">
+		        <div style = "inline-size: 30%">
+			        <canvas th:id="'pieChart' + ${iterator.index}"></canvas>
+		        </div>
 
-            <h2>Pie Chart</h2>
-            <!--                <canvas th:id="pieChart" th:width="100%" th:max-width: 600px></canvas>-->
-           <div Style = "inline-size: 30%"><canvas th:id="'pieChart' + ${iterator.index}" width="40" height="40"></canvas><div>
+	            <script th:inline="javascript">
+		            var answerData = /*[[${question.answerAsMap}]]*/ {};
+	                var myChart = document.getElementById('pieChart' + /*[(${iterator.index})]*/ '').getContext('2d');
+	                let xValues = Object.keys(answerData) ;
+	                let yValues = Object.values(answerData);
+	                const barColours = ['rgba(255, 99, 132, 0.7)',
+	                    'rgba(54, 162, 235, 0.7)',
+	                    'rgba(255, 206, 86, 0.7)',];
 
-            <script th:inline="javascript">
-                var answerData = /*[[${question.answerAsMap}]]*/ {};
-                var myChart = document.getElementById('pieChart' + /*[(${iterator.index})]*/ '').getContext('2d');
-                let xValues = Object.keys(answerData) ;
-                let yValues = Object.values(answerData)
-                const barColours = ['rgba(255, 99, 132, 0.7)',
-                    'rgba(54, 162, 235, 0.7)',
-                    'rgba(255, 206, 86, 0.7)',];
-
-                new Chart(myChart, {
-                    type:"pie",
-                    data: {
-                        labels: xValues,
-                        datasets: [{
-                            backgroundColor: barColours,
-                            data: yValues
-                        }]
-                    },
-                    options: {
-                        title: {
-                            display: true,
-                            text: ""
-                        }
-                    }
-                });
-            </script>
+	                new Chart(myChart, {
+	                    type:"pie",
+	                    data: {
+	                        labels: xValues,
+	                        datasets: [{
+	                            backgroundColor: barColours,
+	                            data: yValues
+	                        }]
+	                    },
+	                    options: {
+	                        title: {
+	                            display: true,
+	                            text: ""
+	                        }
+	                    }
+	                });
+	            </script>
+	        </div>
         </div>
     </div>
 </div>

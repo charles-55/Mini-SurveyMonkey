@@ -12,7 +12,7 @@
 <div class="container mt-5">
     <h1 th:text="${survey.name}"/>
 
-    <form action="#" th:action="'/survey/' + ${survey.id} + '/submit'" th:object="${survey}" method="post">
+    <form id="surveyForm" action="#" th:action="'/survey/' + ${survey.id} + '/submit'" th:object="${survey}" method="post">
         <ol>
             <div th:each="question : ${questions}">
                 <li>
@@ -31,10 +31,10 @@
                         <div th:case="'OPTION'">
                             <div th:each="option, iterator : ${question.getAnswerAsMap().keySet()}">
                                 <label>
-                                    <input type="radio" th:value="${option}" name="answers"/>
+                                    <input type="radio" th:value="${option}" th:name="'answers'"/>
                                     <span th:text="${option}"></span>
                                 </label>
-                            </div>
+	                        </div>
                         </div>
                     </div>
                 </li>

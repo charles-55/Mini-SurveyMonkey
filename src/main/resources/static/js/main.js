@@ -20,7 +20,7 @@ function createNavBar() {
     row.insertCell(2).appendChild(createMenuButton("Settings", "/settings"));
 
     if (localStorage.getItem("loggedIn") === "true") {
-        row.insertCell(3).appendChild(createMenuButton("Account", "/Account"));
+        row.insertCell(3).appendChild(createMenuButton("Account", "/account"));
         row.insertCell(4).appendChild(createMenuButton("Logout", "/logout"));
     } else {
         row.insertCell(3).appendChild(createMenuButton("Login", "/login"));

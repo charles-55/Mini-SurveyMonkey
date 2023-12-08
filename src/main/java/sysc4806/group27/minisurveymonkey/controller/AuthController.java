@@ -74,11 +74,10 @@ public class AuthController {
         login(surveyor, model);
         return "redirect:/";
     }
-    @GetMapping("/Account")
+    @GetMapping("/account")
     public String accountPage( Model model) {
         Surveyor loggedInUser= service.findSurveyor(DataTracker.loggedInSurveyorId);
         model.addAttribute("loggedInUser",loggedInUser);
-        
 
         return "accountPage";
     }
