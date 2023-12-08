@@ -56,5 +56,54 @@
     </div>
 </div>
 
+
+<!--&lt;!&ndash; Display pie chart for options and answer counts &ndash;&gt;-->
+<!--<div th:if="${optionsAndAnswerCounts}">-->
+<!--    <h2>Pie Chart: Options and Answer Counts</h2>-->
+<!--    <span id="chartIndex" th:text="${iterator.index}" style="display: none;"></span>-->
+
+<!--    &lt;!&ndash; Add your code to display the pie chart using optionsAndAnswerCounts data &ndash;&gt;-->
+<!--    &lt;!&ndash; You may need to use JavaScript or a chart library for this purpose &ndash;&gt;-->
+<!--    &lt;!&ndash; Render pie chart here using the question.answers &ndash;&gt;-->
+<!--    <canvas th:id="'pieChart' + ${iterator.index}" width="400" height="400"></canvas>-->
+<!--    <script th:inline="javascript">-->
+<!--        /* Extract option values and answer counts for the pie chart */-->
+<!--        var options = /*[[${question.options}]]*/ [];-->
+<!--        var counts = /*[[${question.answerCounts}]]*/ [];-->
+
+<!--        /* Use JavaScript to create a pie chart with Chart.js */-->
+<!--        var ctx = document.getElementById('pieChart' + document.getElementById('chartIndex').textContent).getContext('2d');-->
+<!--        var myPieChart = new Chart(ctx, {-->
+<!--            type: 'pie',-->
+<!--            data: {-->
+<!--                labels: options,-->
+<!--                datasets: [{-->
+<!--                    data: counts,-->
+<!--                    backgroundColor: [-->
+<!--                        'rgba(255, 99, 132, 0.7)',-->
+<!--                        'rgba(54, 162, 235, 0.7)',-->
+<!--                        'rgba(255, 206, 86, 0.7)',-->
+<!--                        // Add more colors as needed-->
+<!--                    ],-->
+<!--                    borderWidth: 1-->
+<!--                }]-->
+<!--            },-->
+<!--            options: {-->
+<!--                responsive: true,-->
+<!--                maintainAspectRatio: false,-->
+<!--                // Add more chart options as needed-->
+<!--            }-->
+<!--        });-->
+<!--    </script>-->
+<!--</div>-->
+
+<!--<div th:unless="${question.type == 'OPTION'}">-->
+<!--    &lt;!&ndash; Render other types of questions as needed &ndash;&gt;-->
+<!--    <div th:each="answer: ${question.answers}">-->
+<!--        <p th:text="${answer}" />-->
+<!--    </div>-->
+<!--</div>-->
+
+
 </body>
 </html>

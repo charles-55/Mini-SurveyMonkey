@@ -18,9 +18,12 @@
     <h1>Welcome to Mini Survey Monkey</h1>
     <h2>Explore and create surveys:</h2>
 
-    <div class="button-container">
-        <button onclick="window.location.href='/login'">Login</button>
-        <button onclick="window.location.href='/register'">Register</button>
+    <div class="button-container" style="display: inline">
+        <button th:unless="${loggedInState}" onclick="window.location.href='/login'">Login</button>
+        <button th:unless="${loggedInState}" onclick="window.location.href='/register'">Register</button>
+        <button th:if="${loggedInState}" onclick="window.location.href='/survey/add'">Create Survey</button>
+        <button class="btn btn-primary" onclick="window.location.href='/survey/add'">Create Survey</button>
+        <button onclick="window.location.href='/survey/all'">Find Survey</button>
     </div>
 </div>
 </body>

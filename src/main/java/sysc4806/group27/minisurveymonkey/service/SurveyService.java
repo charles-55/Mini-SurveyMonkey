@@ -5,7 +5,9 @@ import sysc4806.group27.minisurveymonkey.model.*;
 import sysc4806.group27.minisurveymonkey.repository.SurveyRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SurveyService {
@@ -133,5 +135,25 @@ public class SurveyService {
             survey.getQuestions().get(i).addAnswer(answers.get(i));
 
         surveyRepo.save(survey);
+    }
+
+    //New stuff
+    public Map<String, List<Long>> getOptionsAndAnswerCounts(int id) {
+        Survey survey = surveyRepo.findById(id);
+
+        Map<String, List<Long>> optionsAndCounts = new HashMap<>();
+        for (Question question : survey.getQuestions()) {
+            if (question instanceof OptionQuestion) {
+                OptionQuestion optionQuestion = (OptionQuestion) question;
+                List<String> options = optionQuestion.getOptions();
+                List<Long> counts = new ArrayList<>();
+                for (String option : options) {
+                    long count = optionQuestion.getAnswers().stream().filter(answer -> answer.equals(option)).count();
+                    counts.add(count);
+                }
+                optionsAndCounts.put(question.getId().toString(), counts);
+            }
+        }
+        return optionsAndCounts;
     }
 }
