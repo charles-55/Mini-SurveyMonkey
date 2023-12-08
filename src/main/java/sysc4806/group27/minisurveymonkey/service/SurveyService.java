@@ -5,7 +5,9 @@ import sysc4806.group27.minisurveymonkey.model.*;
 import sysc4806.group27.minisurveymonkey.repository.SurveyRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SurveyService {

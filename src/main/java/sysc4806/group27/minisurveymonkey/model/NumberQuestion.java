@@ -1,5 +1,7 @@
 package sysc4806.group27.minisurveymonkey.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +25,7 @@ public class NumberQuestion extends Question {
     @CollectionTable(name = "numberQuestionAnswers", joinColumns = @JoinColumn(name = "id"))
     @MapKeyJoinColumn(name = "question_id")
     @Column(name = "selections")
-    private Map<Integer, Integer> answers;
+    private Map<String, Integer> answers;
 
     public NumberQuestion() {
         this(0, 10, 1);
@@ -41,17 +43,28 @@ public class NumberQuestion extends Question {
         //instantiate and initialize every key to have a count of 0
         answers = new HashMap<>();
         for(; x<y; x+=stepVal){
-            answers.put(x, 0);
+            answers.put(String.valueOf(x), 0);
         }
-    }
-
-    public void addCount(int key){
-        answers.replace(key, answers.get(key)+1);
     }
 
     @Override
     public void addAnswer(String s) {
+        answers.replace(s, answers.get(s) + 1);
+    }
 
+    @Override
+    public Object getAnswers(){
+        return this.answers;
+    }
+
+    @Override
+    public Map<String, Integer> getAnswerAsMap() {
+        return answers;
+    }
+
+    public Object getJSONMap() throws JsonProcessingException {
+        String map = new ObjectMapper().writeValueAsString(this.answers);
+        return map;
     }
 
 }
