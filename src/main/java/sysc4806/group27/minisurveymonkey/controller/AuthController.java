@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import sysc4806.group27.minisurveymonkey.model.Surveyor;
+import sysc4806.group27.minisurveymonkey.service.SurveyService;
 import sysc4806.group27.minisurveymonkey.service.SurveyorService;
 
 import java.util.List;
@@ -56,7 +57,7 @@ public class AuthController {
     }
 
     @PostMapping("/register/save")
-    public String addSurveyor( @ModelAttribute("user") Surveyor surveyor, BindingResult result){
+    public String addSurveyor( @ModelAttribute("user") Surveyor surveyor, BindingResult result, Model model){
         List<Surveyor> existingUser = service.findAllSurveyor();
         for(Surveyor s: existingUser ){
             if(s.getPassword().length()<7){
@@ -70,18 +71,15 @@ public class AuthController {
 
         }
         service.saveSurveyor(surveyor);
+        login(surveyor, model);
         return "redirect:/";
     }
     @GetMapping("/Account")
-    public String AccountPage( Model model) {
-        List<Surveyor> existingUser = service.findAllSurveyor();
-        System.out.println(DataTracker.loggedInSurveyorId);
-        for (Surveyor s : existingUser) {
-            if (s.getId() == DataTracker.loggedInSurveyorId) {
-                model.addAttribute("loggedInUser", s);
-                break;
-            }
-        }
+    public String accountPage( Model model) {
+        Surveyor loggedInUser= service.findSurveyor(DataTracker.loggedInSurveyorId);
+        model.addAttribute("loggedInUser",loggedInUser);
+        
+
         return "accountPage";
     }
 
