@@ -24,7 +24,7 @@
                 <td th:text="${survey.name}"/>
                 <td style="color: red; text-align: center" th:if="${survey.locked}" th:text="'Closed'"/>
                 <td style="color: green; text-align: center" th:if="${!survey.locked}" th:text="'Open'"/>
-                <td style="text-align: center"><a class="btn btn-outline-primary" th:href="'/survey/' + ${survey.id}" role="button">Select</a></td>
+                <td style="text-align: center"><a class="btn btn-outline-primary" th:href="'/survey/' + ${survey.id}" th:if="${!survey.locked}" role="button">Select</a></td>
             </tr>
         </div>
     </table>
