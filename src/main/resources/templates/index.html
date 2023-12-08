@@ -22,7 +22,6 @@
         <button th:unless="${loggedInState}" onclick="window.location.href='/login'">Login</button>
         <button th:unless="${loggedInState}" onclick="window.location.href='/register'">Register</button>
         <button th:if="${loggedInState}" onclick="window.location.href='/survey/add'">Create Survey</button>
-        <button class="btn btn-primary" onclick="window.location.href='/survey/add'">Create Survey</button>
         <button onclick="window.location.href='/survey/all'">Find Survey</button>
     </div>
 </div>

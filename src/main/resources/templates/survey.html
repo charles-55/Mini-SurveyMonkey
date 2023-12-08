@@ -28,12 +28,14 @@
 			                    }
 		                    </script>
 	                    </div>
-	                    <div th:each="option : ${question.getAnswerAsMap().keySet()}">
-		                    <label>
-			                    <input type="radio" th:value="${option}" name="answers"/>
-			                    <span th:text="${option}"></span>
-		                    </label>
-	                    </div>
+                        <div th:case="'OPTION'">
+                            <div th:each="option, iterator : ${question.getAnswerAsMap().keySet()}">
+                                <label>
+                                    <input type="radio" th:value="${option}" name="answers"/>
+                                    <span th:text="${option}"></span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </li>
             </div>

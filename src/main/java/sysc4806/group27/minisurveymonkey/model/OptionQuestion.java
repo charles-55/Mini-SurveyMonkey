@@ -29,7 +29,7 @@ public class OptionQuestion extends Question {
 
     @Override
     public Map<String, Integer> getAnswerAsMap() {
-        return null;
+        return answers;
     }
 
     @Override
@@ -40,14 +40,4 @@ public class OptionQuestion extends Question {
     public void addOption(String optionValue){
         answers.put(optionValue, 0);
     }
-
-    //New stuff added
-    public List<String> getOptions() {
-        return answers.keySet();
-    }
-
-    public List<String> getAnswers() {
-        return answers;
-    }
-
 }
