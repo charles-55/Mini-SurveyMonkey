@@ -44,7 +44,7 @@ A mini-survey monkey web application that allows a surveyor to create a survey w
 
 
 ## Database Schema as of Milestone 3
-![image](https://github.com/charles-55/Mini-SurveyMonkey/assets/77470047/5f260a55-6553-4f24-bf76-03c2e52b19d9)
+![image](https://github.com/charles-55/Mini-SurveyMonkey/assets/77470047/3d9bab27-7ffa-4a74-aad9-0be661b07107)
 
 
 ## Model UML Diagram as of Milestone 3
