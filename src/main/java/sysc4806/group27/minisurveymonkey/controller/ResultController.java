@@ -19,7 +19,7 @@ public class ResultController {
     }
 
     @GetMapping("/results/{id}")
-    public String getSurveyResults(@PathVariable("id") int id, Model model){
+    public String getSurveyResults(@PathVariable("id") int id, Model model) {
         model.addAttribute("survey", surveyService.getSurvey(id));
 
         ff4j = new FF4jConfig().createFF4j();

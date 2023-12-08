@@ -38,11 +38,10 @@ public class NumberQuestion extends Question {
         this.stepVal = stepVal;
 
         int x = minVal;
-        int y = maxVal-minVal;
 
         //instantiate and initialize every key to have a count of 0
         answers = new HashMap<>();
-        for(; x<y; x+=stepVal){
+        for(; x<=maxVal; x+=stepVal){
             answers.put(String.valueOf(x), 0);
         }
     }
@@ -60,11 +59,6 @@ public class NumberQuestion extends Question {
     @Override
     public Map<String, Integer> getAnswerAsMap() {
         return answers;
-    }
-
-    public Object getJSONMap() throws JsonProcessingException {
-        String map = new ObjectMapper().writeValueAsString(this.answers);
-        return map;
     }
 
 }
