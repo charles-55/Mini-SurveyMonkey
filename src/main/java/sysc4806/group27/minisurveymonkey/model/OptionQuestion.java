@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.List;
 
 @Entity
 @Getter
@@ -40,18 +41,13 @@ public class OptionQuestion extends Question {
         answers.put(optionValue, 0);
     }
 
-//    public void addOption(String optionValue){
-//        Option option = new Option(optionValue);
-//        option.setQuestion (this);
-//        options.add(option);
-//    }
-//
-//
-//    public static void main(String[] args) {
-//        OptionQuestion q1 = new OptionQuestion("Do you like Java?");
-//        Option op1 = new Option("yes");
-//        Option op2 = new Option("no");
-//        q1.addOption(String.valueOf(op1));
-//        q1.addOption(String.valueOf(op2));
-//    }
+    //New stuff added
+    public List<String> getOptions() {
+        return answers.keySet();
+    }
+
+    public List<String> getAnswers() {
+        return answers;
+    }
+
 }
