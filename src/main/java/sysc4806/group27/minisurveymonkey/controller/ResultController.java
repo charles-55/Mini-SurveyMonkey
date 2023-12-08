@@ -21,7 +21,6 @@ public class ResultController {
     @GetMapping("/results/{id}")
     public String getSurveyResults(@PathVariable("id") int id, Model model){
         model.addAttribute("survey", surveyService.getSurvey(id));
-        model.addAttribute("optionsAndAnswerCounts", surveyService.getOptionsAndAnswerCounts(id));
 
         ff4j = new FF4jConfig().createFF4j();
         if(ff4j.check("darkMode")){
