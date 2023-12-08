@@ -35,9 +35,9 @@ A mini-survey monkey web application that allows a surveyor to create a survey w
   - Users can create a survey giving a title, and adding questions based on selected question type and content
   - Users can select from open-ended, range, and multi-choice questions to add
   - Survey form is dynamic, users can add and remove questions, at least one question stays on the page at all times
-- Select survey / take survey
+- Search survey / take survey
   - All surveys in the DB are retrieved and can be displayed
-  - Surveys can be taken, all questions provide text areas for now
+  - Surveys can be taken, all questions provide text areas, number, and option question
   - Answers to survey question are saved to DB upon submission
 - Display results of survey
   - Displays answers submitted to each survey question of a selected survey
