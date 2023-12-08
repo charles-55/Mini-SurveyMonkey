@@ -42,25 +42,11 @@ A mini-survey monkey web application that allows a surveyor to create a survey w
 - Display results of survey
   - Displays answers submitted to each survey question of a selected survey
 
-## Plan for next Sprint
-- Login/registration feature:
-  - Make a user logged in when they just registered
-- Create new survey feature:
-  - Make handling of options more dynamic
-- Display results of survey:
-  - Surveys should display summarization of answers based on question type
-    - for range, a histogram interpretation
-    - for option question, a pie-chart interpretation
-- Account page:
-  - Add a page to allow surveyors:
-    - see all their created surveys
-    - vie the results of their surveys
-    - lock and unlock a survey
 
-## Database Schema as of Milestone 2
-![mydb](https://github.com/charles-55/Mini-SurveyMonkey/assets/59775183/735e031b-2320-406d-935c-286306a60765)
+## Database Schema as of Milestone 3
+![image](https://github.com/charles-55/Mini-SurveyMonkey/assets/77470047/5f260a55-6553-4f24-bf76-03c2e52b19d9)
 
 
-## Model UML Diagram as of Milestone 2
+## Model UML Diagram as of Milestone 3
 ![modeldiagram](https://github.com/charles-55/Mini-SurveyMonkey/assets/59775183/c277dab6-fbd9-4e8e-b74a-d8702ca3f12f)
 
