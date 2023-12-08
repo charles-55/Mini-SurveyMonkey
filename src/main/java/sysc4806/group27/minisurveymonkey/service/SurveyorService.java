@@ -1,6 +1,7 @@
 package sysc4806.group27.minisurveymonkey.service;
 
 import org.springframework.stereotype.Service;
+import sysc4806.group27.minisurveymonkey.controller.DataTracker;
 import sysc4806.group27.minisurveymonkey.model.Survey;
 import sysc4806.group27.minisurveymonkey.model.Surveyor;
 import sysc4806.group27.minisurveymonkey.repository.SurveyorRepository;
@@ -36,4 +37,15 @@ public class SurveyorService {
         surveyor.addSurvey(survey);
         surveyorRepository.save(surveyor);
     }
+    public Surveyor findSurveyor(Long id){
+        List<Surveyor> existingUser = findAllSurveyor();
+        for (Surveyor s : existingUser) {
+            if (s.getId() == id) {
+                return s;
+            }
+        }
+        return null;
+
+    }
+
 }

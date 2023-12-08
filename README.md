@@ -5,7 +5,6 @@
   * [Overview](#overview)
   * [Authors](#authors)
   * [State of the Project](#state-of-the-project)
-  * [Plan for next Sprint](#plan-for-next-sprint)
   * [Database Schema as of Milestone 1](#database-schema-as-of-milestone-1)
   * [Model UML Diagram as of Milestone 1](#model-uml-diagram-as-of-milestone-1)
 <!-- TOC -->
@@ -21,46 +20,35 @@ A mini-survey monkey web application that allows a surveyor to create a survey w
 5. Toyin Adams
 
 ## State of the Project
+- Our Mini-Survey application includes 4 main features:
+  - Login/registration feature
+  - Create new survey feature
+  - Searching for surveys feature
+  - Taking surveys feature
+  - Displaying survey results feature 
 - Index page:
-  - The landing page has links to the currently implemented features
-  - 4 main features currently implemented are:
-    - surveyor login/registration
-    - create new survey
-    - select survey / take survey
-    - display results of survey (display the answers submitted to the survey)
+  - The initial landing page has 3 links to login, register, or find a survey while a user is not logged in.
 - Login/registration feature:
-  - Users can register on registration page and are saved to the Database
-  - Only registered users can log in, if not registered, users trying to log in will be sent to error page
+  - Users can register on the registration page, are saved to the DB, and are automatically logged in
+  - Already registered users can log in
+  - The application implements user authentication by checking that users attempted to log in are registered with the correct username and password in the DB
 - Create new survey feature:
-  - Users can create a survey giving a title, and adding questions based on selected question type and content
-  - Users can select from open-ended, range, and multi-choice questions to add
+  - Logged in users can create a survey giving a title, and adding questions based on selected question type and content
+  - They can select from open-ended, range, and multi-choice questions to add
   - Survey form is dynamic, users can add and remove questions, at least one question stays on the page at all times
-- Select survey / take survey
-  - All surveys in the DB are retrieved and can be displayed
-  - Surveys can be taken, all questions provide text areas for now
-  - Answers to survey question are saved to DB upon submission
+- Search survey / take survey
+  - All surveys in the DB are retrieved and displayed for any users to search for
+  - Surveys are listed and shown as either open or locked, locked survey can not be accessed by users
+  - Answers to open survey questions are saved to DB upon submission
 - Display results of survey
-  - Displays answers submitted to each survey question of a selected survey
-
-## Plan for next Sprint
-- Login/registration feature:
-  - Make a user logged in when they just registered
-- Create new survey feature:
-  - Make handling of options more dynamic
-- Display results of survey:
-  - Surveys should display summarization of answers based on question type
-    - for range, a histogram interpretation
-    - for option question, a pie-chart interpretation
-- Account page:
-  - Add a page to allow surveyors:
-    - see all their created surveys
-    - vie the results of their surveys
-    - lock and unlock a survey
-
-## Database Schema as of Milestone 2
-![mydb](https://github.com/charles-55/Mini-SurveyMonkey/assets/59775183/735e031b-2320-406d-935c-286306a60765)
+  - A summary of the results of a survey can be viewed and are displayed as a list of the questions for open-ended questions, a histogram for range questions, and a pie chart for option questions
 
 
-## Model UML Diagram as of Milestone 2
-![modeldiagram](https://github.com/charles-55/Mini-SurveyMonkey/assets/59775183/c277dab6-fbd9-4e8e-b74a-d8702ca3f12f)
+## Database Schema as of Milestone 3
+![image](https://github.com/charles-55/Mini-SurveyMonkey/assets/140278554/544e0e6a-e0c2-44b1-b6bd-8faecd5c5963)
+
+
+## Model UML Diagram as of Milestone 3
+![image](https://github.com/charles-55/Mini-SurveyMonkey/assets/140278554/6a530df0-c828-49b1-b330-61d816349fc1)
+
 

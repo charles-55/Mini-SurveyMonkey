@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Submitted</title>
@@ -13,9 +13,6 @@
     <h1>Survey Submitted</h1>
     <p>Thank you for taking this survey, your submission was successfully received.</p>
 
-    <a th:href="'/results/' + ${survey.id}">
-        <button type="submit" class="btn btn-primary mt-3">See Results</button>
-    </a>
     <a href="/">
         <button type="submit" class="btn btn-primary mt-3">Home</button>
     </a>

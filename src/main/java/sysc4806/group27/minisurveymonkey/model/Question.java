@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Getter
@@ -20,6 +22,8 @@ public abstract class Question {
     private QuestionType type;
 
     public abstract Object getAnswers();
+
+    public abstract Map<String, Integer> getAnswerAsMap();
 
     public abstract void addAnswer(String s);
 

@@ -59,9 +59,15 @@ public class SurveyController {
     }
 
     @PostMapping("/survey/{surveyId}/submit")
-    public String submitSurvey(@PathVariable("surveyId") int surveyId, @RequestParam("answers") List<String> answers, Model model) {
+    public String submitSurvey(@PathVariable("surveyId") int surveyId, @RequestParam("answers") List<String> answers,  Model model) {
         surveyService.addSurveyAnswers(surveyId, answers);
         model.addAttribute("survey", surveyService.getSurvey(surveyId));
         return "submitted";
+    }
+
+    @PostMapping("/survey/toggleAccess")
+    public String toggleAccess(@RequestParam int surveyId) {
+        surveyService.toggleSurveyAccess(surveyId);
+        return "redirect:/account";
     }
 }
